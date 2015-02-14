@@ -1,0 +1,7 @@
+{
+  "exception.illegal.link": "Fehlerhafter Link",
+  "exception.illegal.link.description": "Sie haben einen Fehlerhaften oder nicht mehr gültigen Link aufgerufen!",
+  "exception.permission.denied": "Zugriff verweigert",
+  "exception.permission.denied.description": "Sie haben keine Berechtigung diese Seite aufzurufen.",
+  "exception.input.user.false" : "Es wurde ein Falscher Benutzer Objekt übergeben"
+}

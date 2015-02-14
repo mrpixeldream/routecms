@@ -1,0 +1,6 @@
+{
+  "group.guest": "Gäste",
+  "group.user": "Registrierte Benutzer",
+  "group.admin": "Administratoren",
+  "group.delete.sure": "Möchten sie diese Benutzergruppe wirklich löschen?"
+}

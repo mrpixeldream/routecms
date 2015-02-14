@@ -1,0 +1,16 @@
+{
+  "user.none": "Keine Benutzer vorhanden",
+  "user.username": "Benutzername",
+  "user.real.name": "Name",
+  "user.login.password.error.false": "Passwort stimmt mit dem Benutzername nicht &uuml;berein",
+  "user.login.error.not.registered": "Der Benutzername existiert nicht",
+  "user.welcome.back": "Willkommen zur&uuml;ck,",
+  "user.edit": "Benutzer bearbeiten",
+  "user.delete": "Benutzer löschen",
+  "user.delete.sure": "Benutzer wirklich löschen?",
+  "user.category.user": "Allgemeine Rechte",
+  "user.category.user.general": "Allgemein",
+  "user.category.admin": "Administrative Rechte",
+  "user.category.admin.general": "Allgemein",
+  "user.category.admin.user": "Benutzer"
+}
