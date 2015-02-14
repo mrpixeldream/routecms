@@ -1,0 +1,23 @@
+#box {
+	width: 450px;
+	color: #ffffff;
+	background-color: #488bc5;
+	font-family: sans-serif;
+	font-weight: 300;
+}
+
+.boxheader {
+	color: #ffffff;
+	background-color: #3c3b3b;
+	padding: 5px;
+	height: 20px;
+	font-weight: 600;
+	color: #ffffff;
+	text-align: center;
+}
+
+.boxinhalt {
+	text-align: center;
+	padding: 15px;
+}
+
