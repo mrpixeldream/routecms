@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `routecms_user` (
   `userID` int(10) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `salat` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `salt` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`userID`),
   KEY `userID` (`userID`)
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `routecms_user` (
 -- Daten für Tabelle `routecms_user`
 --
 
-INSERT INTO `routecms_user` (`userID`, `username`, `password`, `salat`, `email`) VALUES
+INSERT INTO `routecms_user` (`userID`, `username`, `password`, `salt`, `email`) VALUES
 (1, 'Admin', '1a2bcfa7c06b7ab33c54e4bda8f72dcdb38d2e55', 'rSeeKX83FxKLj2w531Fh', '');
 
 -- --------------------------------------------------------
