@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Feb 2015 um 11:50
+-- Erstellungszeit: 16. Feb 2015 um 19:02
 -- Server Version: 5.5.34
 -- PHP-Version: 5.4.22
 
@@ -121,11 +121,11 @@ CREATE TABLE IF NOT EXISTS `routecms_group_option` (
 
 INSERT INTO `routecms_group_option` (`optionID`, `category`, `name`, `type`, `additionalData`, `permissions`, `options`, `position`) VALUES
 (1, 'admin.general', 'admin.can.use.admin', 'boolean', '', '', '', 1),
-(2, 'admin.user', 'admin.can.delete.user', 'boolean', '', '', '', 1),
-(3, 'admin.user', 'admin.can.edit.user', 'boolean', '', '', '', 2),
-(4, 'admin.group', 'admin.can.edit.group', 'boolean', '', '', '', 1),
-(5, 'admin.group', 'admin.can.delete.group', 'boolean', '', '', '', 2),
-(6, 'admin.group', 'admin.can.mange.group', 'groupList', '', '', '', 3);
+(2, 'admin.members', 'admin.can.delete.user', 'boolean', '', '', '', 1),
+(3, 'admin.members', 'admin.can.edit.user', 'boolean', '', '', '', 2),
+(4, 'admin.groups', 'admin.can.edit.group', 'boolean', '', '', '', 1),
+(5, 'admin.groups', 'admin.can.delete.group', 'boolean', '', '', '', 2),
+(6, 'admin.groupsMange', 'admin.can.mange.group', 'groupList', '', '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `routecms_group_option_category` (
   UNIQUE KEY `categoryID` (`categoryID`),
   UNIQUE KEY `test` (`position`,`parent`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Daten für Tabelle `routecms_group_option_category`
@@ -155,7 +155,8 @@ INSERT INTO `routecms_group_option_category` (`categoryID`, `name`, `parent`, `p
 (4, 'admin.general', 'admin', 0),
 (5, 'admin.user', 'admin', 1),
 (6, 'admin.members', 'admin.user', 0),
-(8, 'admin.groups', 'admin.user', 1);
+(8, 'admin.groups', 'admin.user', 1),
+(10, 'admin.groupsMange', 'admin.user', 2);
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,7 @@ INSERT INTO `routecms_group_option_value` (`optionID`, `groupID`, `value`) VALUE
 (1, 1, '0'),
 (1, 2, '0'),
 (1, 3, '1'),
-(2, 3, '1'),
+(2, 3, '0'),
 (3, 3, '1'),
 (4, 3, '1'),
 (5, 3, '1'),
@@ -284,6 +285,14 @@ CREATE TABLE IF NOT EXISTS `routecms_session` (
   UNIQUE KEY `sessionID` (`sessionID`),
   KEY `userID` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Daten für Tabelle `routecms_session`
+--
+
+INSERT INTO `routecms_session` (`sessionID`, `userID`, `pw`, `lastTime`, `ipAddress`) VALUES
+('cW11V75HrN4Zv8kerMX2Gqi2M67cN6Nm8kP8e2lKn8Yh7qYuXF', 1, '5dadcb71913604520b628e8e6b3db73175ff6740', 1424109702, '::ffff:7f00:1'),
+('UfM07bZLw8Cj5KxxS0SiQ1cLJ6My86n2S11Qlyko1naU21AzM5', NULL, '52bb1ca6be3bcf425371b4676c1a9e004b2cfd3c', 1424104162, '::ffff:7f00:1');
 
 -- --------------------------------------------------------
 

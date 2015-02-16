@@ -119,10 +119,13 @@ class Template {
 	/**
 	 * Inizalisiert ein neues Template
 	 *
-	 * @param string $name
-	 * @param string $path
+	 * @param string  $name
+	 * @param string  $path
+	 * @param boolean $return
+	 *
+	 * @return string
 	 */
-	public function fetchTemplate($name, $path = "lib/template/") {
+	public function fetchTemplate($name, $path = "lib/template/", $return = false) {
 		EventManger::event("fetchTemplate", get_class($this), $this);
 		$this->name = $name;
 		$this->assign(array('template' => $this->name));
@@ -134,7 +137,15 @@ class Template {
 		$this->hash = sha1($this->content);
 		$this->assign(array('country' => Routecms::getLanguage()->country));
 		$this->saveTemplate();
-		$this->showTemplate();
+		if(!$return){
+			$this->showTemplate();
+		}else{
+			ob_start();
+			$this->showTemplate();
+			$content = ob_get_contents();
+			ob_clean();
+			return $content;
+		}
 	}
 
 	/**

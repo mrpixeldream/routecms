@@ -80,7 +80,7 @@ class GroupOptionCategory extends dbObject {
 	public function getOptionList(){
 		if(is_null($this->options)) {
 			$this->options = array();
-			$sql = "SELECT	id
+			$sql = "SELECT	*
 			FROM	".DB_PREFIX."group_option
 			WHERE	category = ? ORDER BY position ASC";
 			$statement = Routecms::getDB()->statement($sql);

@@ -1,18 +1,18 @@
 {if $template != 'login' && $template != 'errorLogin'}
-<footer>
-    <a href="http://www.routecms.de"><p>{lang "system.copyright"}</p></a>
-</footer>
-</div>
-</div>
-</div>
-</div>
-{else}
-</div>
-<footer>
-    <div>
+    <footer>
         <a href="http://www.routecms.de"><p>{lang "system.copyright"}</p></a>
+    </footer>
     </div>
-</footer>
+    </div>
+    </div>
+    </div>
+{else}
+    </div>
+    <footer>
+        <div>
+            <a href="http://www.routecms.de"><p>{lang "system.copyright"}</p></a>
+        </div>
+    </footer>
 {/if}
 <script>
     $lang = { };
@@ -30,7 +30,8 @@
         {if $template == 'login' || $template == 'errorLogin'}
         stickyFooter();
         {/if}
-    }).resize(function () {
+    });
+    $(window).resize(function () {
         updateSidebar();
         {if $template == 'login' || $template == 'errorLogin'}
         stickyFooter();

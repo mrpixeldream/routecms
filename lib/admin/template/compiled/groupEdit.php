@@ -1,13 +1,13 @@
 <?php
 /**
- * Hash : ad23b69eb93ab4cc71aa8c7d30f7cfc20d7e0d43
+ * Hash : 1c09552177270e6f49dfc073a4cb9b7209a2b3e7
  */
 ?>
 <?php include("header.php") ?>
 <?php include("menu.php") ?>
 
 
-<form class="column">
+<form class="column" action="?page=groupEdit&groupID=<?php echo intval($this->vars['groupID']) ?>" method="post">
     <div class="content-box">
         <ul class="panel tabs" data-tab role="tablist">
             <?php $this->vars["first"] =true; ?>
@@ -38,21 +38,29 @@
                             <?php foreach($this->vars['category']->getParent() as $this->vars['parent']){?>
                                 <div class="column panel container content no-border-top<?php if($this->vars['first']) { ?> active<?php $this->vars["first"] =false; ?><?php } ?>"
                                      aria-hidden="true" id="category<?php echo $this->vars['parent']->categoryID ?>">
-                                    <fieldset>
-                                        <legend><?php echo lang("user.category.".$this->vars['parent']->name) ?></legend>
-                                        <?php foreach($this->vars['parent']->getOptionList() as $this->vars["option"]){?>
-                                            <?php $this->vars["templateName"] =$this->vars['optionList'][$this->vars['option']->optionID]["output"]->getTemplate(); ?>
-                                            <?php include("this->vars['templateName'.php") ?>
-                                        <?php } ?>
-                                    </fieldset>
-                                    <?php foreach($this->vars['parent']->getParent() as $this->vars['optionCategory']){?>
+                                    <?php if(count($this->vars['parent']->getOptionList()) > 0){ ?>
                                         <fieldset>
-                                            <legend><?php echo lang("user.category.".$this->vars['optionCategory']->name) ?></legend>
-                                            <?php foreach($this->vars['optionCategory']->getOptionList() as $this->vars["option"]){?>
-                                                <?php $this->vars["templateName"] =$this->vars['optionList'][$this->vars['option']->optionID]["output"]->getTemplate(); ?>
-                                                <?php include("this->vars['templateName'.php") ?>
-                                            <?php } ?>
+                                            <legend><?php echo lang("user.category.".$this->vars['parent']->name) ?></legend>
+                                            <div class="row">
+                                                <?php foreach($this->vars['parent']->getOptionList() as $this->vars["option"]){?>
+                                                    <?php $this->vars["value"] =$this->vars['optionList'][$this->vars['option']->optionID]["output"]->getValue(); ?>
+                                                    <?php echo $this->vars['optionList'][$this->vars['option']->optionID]["output"]->fetchTemplate() ?>
+                                                <?php } ?>
+                                            </div>
                                         </fieldset>
+                                    <?php } ?>
+                                    <?php foreach($this->vars['parent']->getParent() as $this->vars['optionCategory']){?>
+                                        <?php if(count($this->vars['optionCategory']->getOptionList()) > 0){ ?>
+                                            <fieldset>
+                                                <legend><?php echo lang("user.category.".$this->vars['optionCategory']->name) ?></legend>
+                                                <div class="row">
+                                                    <?php foreach($this->vars['optionCategory']->getOptionList() as $this->vars["option"]){?>
+                                                        <?php $this->vars["value"] =$this->vars['optionList'][$this->vars['option']->optionID]["output"]->getValue(); ?>
+                                                        <?php echo $this->vars['optionList'][$this->vars['option']->optionID]["output"]->fetchTemplate() ?>
+                                                    <?php } ?>
+                                                </div>
+                                            </fieldset>
+                                        <?php } ?>
                                     <?php } ?>
                                 </div>
                             <?php } ?>

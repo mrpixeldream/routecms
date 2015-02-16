@@ -1,7 +1,7 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/Page.php');
-require_once(DIRNAME.'lib/system/user/group/Group.php');
-require_once(DIRNAME.'lib/system/user/group/GroupOptionCategory.php');
+require_once(DIRNAME . 'lib/pages/class/Page.php');
+require_once(DIRNAME . 'lib/system/user/group/Group.php');
+require_once(DIRNAME . 'lib/system/user/group/GroupOptionCategory.php');
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Index.php
@@ -11,7 +11,8 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 11.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class GroupEdit extends Page {
+class GroupEdit extends Page{
+
 	/**
 	 * @see    Page::$template
 	 */
@@ -46,33 +47,53 @@ class GroupEdit extends Page {
 	/**
 	 * @see Page::read()
 	 **/
-	public function read() {
+	public function read(){
 		parent::read();
 		$this->groupID = Input::get("groupID", "integer", 0);
 		$this->group = new Group($this->groupID);
-		if(!$this->group || !isset($this->group->groupID) && $this->group->groupID == 0) {
+		if(!$this->group || !isset($this->group->groupID) && $this->group->groupID == 0){
 			throw new IllegalLinkException();
 		}
-		if(!in_array($this->groupID, Routecms::getPermission("admin.can.mange.group"))) {
+		if(!in_array($this->groupID, Routecms::getPermission("admin.can.mange.group"))){
 			throw new PermissionException();
 		}
-		if(count($this->optionList) == 0) {
+		if(count($this->optionList) == 0){
 			$sql = "SELECT	*
-			FROM	".DB_PREFIX."group_option ORDER BY position ASC, category ASC";
+			FROM	" . DB_PREFIX . "group_option ORDER BY position ASC, category ASC";
 			$statement = Routecms::getDB()->statement($sql);
 			$statement->execute();
-			while($row = $statement->fetchArray()) {
+			while($row = $statement->fetchArray()){
 				$option = new GroupOption(null, $row);
 				$this->optionList[$option->optionID]["option"] = $option;
-				$this->optionList[$option->optionID]["output"] = $option->getOutput($this->group);
-							}
+				$this->optionList[$option->optionID]["output"] = $option->getOutput($this->group, Input::isPost());
+			}
 		}
 	}
 
 	/**
+	 * @see    Page::save()
+	 */
+	public function save() {
+		parent::save();
+		foreach($this->optionList as $option){
+			$output = $option["output"];
+			$output->save();
+		}
+	}
+	/**
+	 * @see    Page::validate()
+	 */
+	public function validate() {
+		parent::validate();
+		foreach($this->optionList as $option){
+			$output = $option["output"];
+			$output->validate();
+		}
+	}
+	/**
 	 * @see Page::assign()
 	 **/
-	public function assign() {
+	public function assign(){
 		parent::assign();
 		Routecms::getTemplate()->assign(array('tree' => GroupOptionCategory::getTree(),
 			'groupID' => $this->groupID,

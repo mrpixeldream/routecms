@@ -12,5 +12,11 @@
   "user.category.user.general": "Allgemein",
   "user.category.admin": "Administrative Rechte",
   "user.category.admin.general": "Allgemein",
-  "user.category.admin.user": "Benutzer"
+  "user.category.admin.user": "Benutzer",
+  "user.category.admin.members": "Mitglieder",
+  "user.category.admin.groups": "Benutzergruppen",
+  "user.grou.option.admin.can.delete.user": "Kann Mitglieder löschen",
+  "user.grou.option.admin.can.edit.user": "Kann Mitglieder bearbeiten",
+  "user.grou.option.admin.can.use.admin": "Kann das Admin-Panel betreten",
+  "user.category.admin.groupsMange": "Zugängliche Benutzergruppen"
 }

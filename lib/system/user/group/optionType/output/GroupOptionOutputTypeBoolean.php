@@ -18,4 +18,15 @@ class GroupOptionOutputTypeBoolean extends AbstractGroupOptionOutputType {
 		return "groupOptionBoolean";
 	}
 
+	/**
+	 * Ruft den Wert der Option ab
+	 */
+	protected function loadValue(){
+		$values = Input::post("groupOptionValues", "array", array());
+		if(isset($values[$this->option->name])){
+			$this->value = 1;
+		}else{
+			$this->value = 0;
+		}
+	}
 }

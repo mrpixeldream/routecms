@@ -44,7 +44,10 @@ abstract class Page {
 				throw new PermissionException();
 			}
 		}
-		$this->read();
+		$this->read();	
+		if(Input::isPost()) {
+			$this->submit();
+		}	
 		$this->show();
 	}
 
@@ -53,9 +56,7 @@ abstract class Page {
 	 **/
 	public function read() {
 		EventManger::event("read", get_class($this), $this);
-		if(Input::isPost()) {
-			$this->submit();
-		}
+		
 	}
 
 	/**
