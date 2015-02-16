@@ -92,14 +92,14 @@ class Session extends dbObject {
 		$availableCharacters = array('abcdefghijklmnopqrstuvwxyz',
 			'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			'0123456789');
-		$salat = '';
+		$salt = '';
 		$type = 0;
 		for($i = 0; $i < 50; $i++) {
 			$type = ($i % 3 == 0) ? 0 : ($type + 1);
-			$salat .= substr($availableCharacters[$type], mt_rand(0, strlen($availableCharacters[$type]) - 1), 1);
+			$salt .= substr($availableCharacters[$type], mt_rand(0, strlen($availableCharacters[$type]) - 1), 1);
 		}
 
-		return str_shuffle($salat);
+		return str_shuffle($salt);
 	}
 
 	/**

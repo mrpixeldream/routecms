@@ -40,8 +40,8 @@ class User extends dbObject {
 		$statement->execute(array($username));
 		$row = $statement->fetchArray();
 		if($row) {
-			$salat = $row["salat"];
-			if(self::cryptPW($password, $salat) == $row["password"]) {
+			$salt = $row["salt"];
+			if(self::cryptPW($password, $salt) == $row["password"]) {
 				return true;
 			}
 		}
@@ -52,12 +52,12 @@ class User extends dbObject {
 	 * Gibt ein gehashtes password zurück
 	 *
 	 * @param string $pw
-	 * @param string $salat
+	 * @param string $salt
 	 *
 	 * @return string
 	 */
-	public static function cryptPW($pw, $salat) {
-		return sha1($pw.$salat);
+	public static function cryptPW($pw, $salt) {
+		return sha1($pw.$salt);
 	}
 
 	/**
@@ -72,14 +72,14 @@ class User extends dbObject {
 			'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			'0123456789');
 
-		$salat = '';
+		$salt = '';
 		$type = 0;
 		for($i = 0; $i < $length; $i++) {
 			$type = ($i % 3 == 0) ? 0 : ($type + 1);
-			$salat .= substr($availableCharacters[$type], mt_rand(0, strlen($availableCharacters[$type]) - 1), 1);
+			$salt .= substr($availableCharacters[$type], mt_rand(0, strlen($availableCharacters[$type]) - 1), 1);
 		}
 
-		return str_shuffle($salat);
+		return str_shuffle($salt);
 	}
 
 
