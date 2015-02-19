@@ -9,7 +9,5 @@
                name="groupOptionValues[<?php echo HTMLEncode($this->vars['option']->name) ?>][<?php echo HTMLEncode($this->vars['groupOption']->groupID) ?>]" value="1"/>
         <label for="<?php echo HTMLEncode($this->vars['option']->name) ?><?php echo HTMLEncode($this->vars['groupOption']->groupID) ?>"><?php echo lang($this->vars['groupOption']->name) ?></label>
     </div>
-    <?php include("test.php");
-include("test.php");
- ?>
+    
 <?php } ?>
