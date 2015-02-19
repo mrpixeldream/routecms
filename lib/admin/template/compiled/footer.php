@@ -1,6 +1,6 @@
 <?php
 /**
- * Hash : a59372a9b9a7a0d05fd387a3b67f4d238efdc6d9
+ * Hash : 82178da5bc850fd0539c9b97567449b678661cdf
  */
 ?>
 <?php if($this->vars['template'] != 'login' && $this->vars['template'] != 'errorLogin') { ?>
@@ -43,19 +43,6 @@
         <?php } ?>
     });
     $(document).foundation('tab', 'reflow');
-    $(document).ready(function () {
-        $('.tabs').each(function () {
-            $(this).tabs({
-                select: function(event, ui){
-                    updateSidebar();
-                    <?php if($this->vars['template'] == 'login' || $this->vars['template'] == 'errorLogin') { ?>
-                    stickyFooter();
-                    <?php } ?>
-                }
-            });
-
-        });
-    });
 </script>
 <div class="reveal-modal" data-reveal id="ajaxError">
     <h1><?php echo lang("error.unknown") ?></h1>

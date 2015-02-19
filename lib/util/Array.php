@@ -17,7 +17,7 @@ class ArrayUtil{
 	 *
 	 * @return array<integer>
 	 */
-	public static function toIntegerArray(array $array = array()){
+	public static function toIntegerArray($array = array()){
 		if (!is_array($array)) {
 			return intval($array);
 		}

@@ -34,7 +34,7 @@ class GroupOptionOutputTypeGroupList extends AbstractGroupOptionOutputType{
 		$values = Input::post("groupOptionValues", "array", array());
 		if(isset($values[$this->option->name]) && is_array($values[$this->option->name])){
 			$values = ArrayUtil::toIntegerArray($values[$this->option->name]);
-			$this->value = implode("\n", $values);
+			$this->value = implode("\n", array_keys($values));
 		}else{
 			$this->value = "";
 		}

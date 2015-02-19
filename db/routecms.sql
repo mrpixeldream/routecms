@@ -286,14 +286,6 @@ CREATE TABLE IF NOT EXISTS `routecms_session` (
   KEY `userID` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Daten für Tabelle `routecms_session`
---
-
-INSERT INTO `routecms_session` (`sessionID`, `userID`, `pw`, `lastTime`, `ipAddress`) VALUES
-('cW11V75HrN4Zv8kerMX2Gqi2M67cN6Nm8kP8e2lKn8Yh7qYuXF', 1, '5dadcb71913604520b628e8e6b3db73175ff6740', 1424109702, '::ffff:7f00:1'),
-('UfM07bZLw8Cj5KxxS0SiQ1cLJ6My86n2S11Qlyko1naU21AzM5', NULL, '52bb1ca6be3bcf425371b4676c1a9e004b2cfd3c', 1424104162, '::ffff:7f00:1');
-
 -- --------------------------------------------------------
 
 --
