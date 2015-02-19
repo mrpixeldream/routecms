@@ -1,6 +1,5 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
+require_once(DIRNAME.'lib/compiler/command/IfEndTemplateCompiler.php');
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : ForeachEndTemplateCompiler.php
@@ -10,12 +9,4 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 01.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class ForeachEndTemplateCompiler extends TemplateCompiler {
-
-	/**
-	 * @see TemplateCompiler::compileTag()
-	 */
-	public function compileTag() {
-		return '<?php } ?>';
-	}
-}
+class ForeachEndTemplateCompiler extends IfEndTemplateCompiler {}
