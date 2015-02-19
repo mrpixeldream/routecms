@@ -4,4 +4,5 @@
                name="groupOptionValues[{$option->name}][{$groupOption->groupID}]" value="1"/>
         <label for="{$option->name}{$groupOption->groupID}">{lang $groupOption->name}</label>
     </div>
+    {event name="test"}
 {/foreach}

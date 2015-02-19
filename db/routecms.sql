@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 16. Feb 2015 um 19:02
+-- Erstellungszeit: 19. Feb 2015 um 12:20
 -- Server Version: 5.5.34
 -- PHP-Version: 5.4.22
 
@@ -188,7 +188,7 @@ INSERT INTO `routecms_group_option_value` (`optionID`, `groupID`, `value`) VALUE
 (3, 3, '1'),
 (4, 3, '1'),
 (5, 3, '1'),
-(6, 3, '1\r\n2\r\n3');
+(6, 3, '1\n3');
 
 -- --------------------------------------------------------
 
@@ -285,6 +285,22 @@ CREATE TABLE IF NOT EXISTS `routecms_session` (
   UNIQUE KEY `sessionID` (`sessionID`),
   KEY `userID` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `routecms_template_event`
+--
+
+CREATE TABLE IF NOT EXISTS `routecms_template_event` (
+  `temaplteEventID` int(10) NOT NULL AUTO_INCREMENT,
+  `templateName` varchar(255) NOT NULL DEFAULT '',
+  `templateEvent` varchar(255) NOT NULL DEFAULT '',
+  `templateInclude` varchar(255) NOT NULL DEFAULT '',
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`temaplteEventID`),
+  UNIQUE KEY `temaplteEventID` (`temaplteEventID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 

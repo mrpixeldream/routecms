@@ -1,6 +1,6 @@
 <?php
 /**
- * Hash : 662c3aa5cb763558034c06806c4f37104c2916a1
+ * Hash : b06a56c304b70a591c6a2a1966c47684f57bc039
  */
 ?>
 <?php foreach($this->vars['groupList'] as $this->vars["groupOption"]){?>
@@ -9,7 +9,4 @@
                name="groupOptionValues[<?php echo HTMLEncode($this->vars['option']->name) ?>][<?php echo HTMLEncode($this->vars['groupOption']->groupID) ?>]" value="1"/>
         <label for="<?php echo HTMLEncode($this->vars['option']->name) ?><?php echo HTMLEncode($this->vars['groupOption']->groupID) ?>"><?php echo lang($this->vars['groupOption']->name) ?></label>
     </div>
-    <?php include("test.php");
-include("test.php");
- ?>
 <?php } ?>

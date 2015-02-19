@@ -8,6 +8,7 @@ require_once(DIRNAME.'lib/system/user/User.php');
 require_once(DIRNAME.'lib/system/user/group/GroupOption.php');
 require_once(DIRNAME.'lib/system/menu/Menu.php');
 require_once(DIRNAME.'lib/system/event/EventManger.php');
+require_once(DIRNAME.'lib/system/event/template/TemplateEventManger.php');
 require_once(DIRNAME.'lib/Template.php');
 
 /*--------------------------------------------------------------------------------------------------
@@ -78,6 +79,7 @@ class Routecms {
 		self::$db = new Database($host, $db, $user, $pw);
 		autoLoad();
 		EventManger::loadEvents();
+		TemplateEventManger::loadEvents();
 		self::getPage();
 		if(Session::checkSession()) {
 			self::$session = Session::getSession();
