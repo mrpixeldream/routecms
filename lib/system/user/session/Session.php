@@ -72,7 +72,7 @@ class Session extends dbObject {
 	public static function createSession($username, $password) {
 		$sessionID = self::generatSessionID();
 		$data = array();
-		$user = User::getBy("username", $username, DIRNAME."lib/system/user/User.php", "User");
+		$user = User::getBy("username", $username, 'routecms\system\user\User');
 		$password = User::cryptPW($password, $sessionID);
 		$data['userID'] = $user->userID;
 		$data['sessionID'] = $sessionID;
