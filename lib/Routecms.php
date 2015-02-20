@@ -74,9 +74,11 @@ class Routecms {
 	 * Inizalisiert das Routecms
 	 */
 	public function __construct() {
-		require_once(DIRNAME.'lib/config.php');
+		$db = parse_ini_file("config.ini");
 		//erstellt eine neue Datenbak Klasse
-		self::$db = new Database($host, $db, $user, $pw);
+		self::$db = new Database($db["host"], $db["db"], $db["user"], $db["pw"]);
+		if(!defined('DB_PREFIX'))
+			define('DB_PREFIX', $db["prefix"]);
 		autoLoad();
 		EventManger::loadEvents();
 		TemplateEventManger::loadEvents();
