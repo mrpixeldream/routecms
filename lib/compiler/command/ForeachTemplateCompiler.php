@@ -1,6 +1,9 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
+namespace routecms\compiler\command;
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
+use routecms\Routecms;
+use routecms\exception\SystemException;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : ForeachTemplateCompiler.php
@@ -16,9 +19,9 @@ class ForeachTemplateCompiler extends TemplateCompiler {
 	 * @see TemplateCompiler::compileTag()
 	 */
 	public function compileTag() {
-		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array('routecms\compiler\QuoteCompiler',
 			'replaceSingleQuotesCallback'), $this->args);
-		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array('routecms\compiler\QuoteCompiler',
 			'replaceDoubleQuotesCallback'), $this->args);
 		preg_match_all('~\s+(\w+)\s*=\s*([^=]*)(?=\s|$)~s', $this->args, $matches);
 		$args = array();
@@ -30,10 +33,10 @@ class ForeachTemplateCompiler extends TemplateCompiler {
 			$args[$name] = $value;
 		}
 		if(!isset($args["from"])) {
-			throw new Exception("Fehler beim kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', beim Foreach Tag, keine From Variabel angegeben");
+			throw new SystemException("Fehler beim kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', beim Foreach Tag, keine From Variabel angegeben");
 		}
 		if(!isset($args["item"])) {
-			throw new Exception("Fehler beim kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', beim Foreach Tag, keine Item Variabel angegeben");
+			throw new SystemException("Fehler beim kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', beim Foreach Tag, keine Item Variabel angegeben");
 		}
 		$from = $args["from"];
 		$item = $args["item"];

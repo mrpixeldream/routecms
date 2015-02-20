@@ -1,5 +1,9 @@
 <?php
-require_once(DIRNAME.'lib/Routecms.php');
+namespace routecms;
+
+use routecms\admin\actions\AjaxIllegalLink;
+use routecms\admin\pages\ErrorLogin;
+use routecms\exception\IllegalLinkException;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Admin.php
@@ -15,26 +19,24 @@ class Admin extends Routecms {
 	 */
 	public function startTemplate() {
 		if(self::$page != "Login" && !self::getUser()->isAdmin()) {
-			require_once(DIRNAME."lib/admin/pages/ErrorLogin.php");
 			$localPage = new ErrorLogin();
 			self::$template = new Template($localPage->template, "lib/admin/template/");
 			$localPage->__run();
 		}else {
 			if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-				if(file_exists(DIRNAME."lib/admin/actions/".self::$page.".php")) {
-					require_once(DIRNAME."lib/admin/actions/".self::$page.".php");
-					$ajax = new self::$page();
+				$class = 'routecms\admin\actions\\'.self::$page;
+				if(class_exists($class)) {
+					$ajax = new $class();
 					$ajax->__run();
 				}else {
-					require_once(DIRNAME."lib/admin/actions/AjaxIllegalLink.php");
 					$ajax = new AjaxIllegalLink();
 					$ajax->__run();
 				}
 			}else {
 				{
-					if(file_exists(DIRNAME."lib/admin/pages/".self::$page.".php")) {
-						require_once(DIRNAME."lib/admin/pages/".self::$page.".php");
-						$localPage = new self::$page();
+					$class = 'routecms\admin\pages\\'.self::$page;
+					if(class_exists($class)) {
+						$localPage = new $class();
 						self::$template = new Template($localPage->template, "lib/admin/template/");
 						$localPage->__run();
 

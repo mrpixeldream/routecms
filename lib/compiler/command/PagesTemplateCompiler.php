@@ -1,6 +1,7 @@
 <?php
-require_once(DIRNAME.'lib/system/option/Option.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
+namespace routecms\compiler\command;
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : PagesTemplateCompiler.php
@@ -16,9 +17,9 @@ class PagesTemplateCompiler extends TemplateCompiler {
 	 */
 	public function compileTag() {
 		$result = '<?php';
-		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array('routecms\compiler\QuoteCompiler',
 			'replaceSingleQuotesCallback'), $this->args);
-		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array('routecms\compiler\QuoteCompiler',
 			'replaceDoubleQuotesCallback'), $this->args);
 		preg_match_all('~\s+(\w+)\s*=\s*([^=]*)(?=\s|$)~s', $this->args, $matches);
 		$link = "";
@@ -51,7 +52,7 @@ class PagesTemplateCompiler extends TemplateCompiler {
 		if($sortField != "") {
 			$link .= '."&amp;sortField=".'.$sortField;
 		}
-		$result .= ' $this->vars["pageLinks"] = Pagination::getPagination('.$link.', $this->vars["pages"], $this->vars["pageNo"]);';
+		$result .= ' $this->vars["pageLinks"] = routecms\util\Pagination::getPagination('.$link.', $this->vars["pages"], $this->vars["pageNo"]);';
 		$result = QuoteCompiler::insertQuotes($result);
 		if($print == "true") {
 			return $result.'

@@ -1,5 +1,6 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/SortPage.php');
+namespace routecms\admin\pages;
+use routecms\pages\SortPage;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : MemberLst.php
@@ -21,7 +22,7 @@ class MemberList extends SortPage {
 	/**
 	 * @see    SortPage::$class
 	 */
-	public $class = "User";
+	public $class = 'routecms\system\user\User';
 
 	/**
 	 * @see    SortPage::$defaultField

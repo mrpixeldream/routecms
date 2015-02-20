@@ -1,4 +1,5 @@
 <?php
+namespace routecms\exception;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : IShowException.php
 Beschreibung 	 : Interface Klasse für auszugeben Fehlermeldungen

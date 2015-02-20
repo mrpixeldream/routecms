@@ -1,4 +1,5 @@
 <?php
+namespace routecms\exception;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : PermissionException.php
 Beschreibung 	 : Fehler Klasse für die Berechtigungen
@@ -7,7 +8,7 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 04.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class PermissionExceptionAjax extends Exception {
+class PermissionExceptionAjax extends \Exception {
 	/**
 	 * Ruft eine Fehlerseite auf, die anzeigt das der Benutzer nicht die nötigen Rechte hat
 	 */

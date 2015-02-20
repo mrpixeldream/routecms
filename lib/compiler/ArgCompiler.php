@@ -1,5 +1,5 @@
 <?php
-require_once(DIRNAME.'lib/compiler/QuoteCompiler.php');
+namespace routecms\compiler;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : IfTemplateCompiler.php
@@ -28,7 +28,6 @@ class ArgCompiler {
 	/**
 	 * Gibt einen kompilierte Zeichenkette der Parameter
 	 *
-	 * @throws Exception
 	 * @return string
 	 */
 	public function compileArgs() {

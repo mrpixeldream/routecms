@@ -1,5 +1,7 @@
 <?php
-require_once(DIRNAME."lib/system/dbObject.php");
+namespace routecms\system\option;
+use routecms\system\DBObject;
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Option.php

@@ -1,15 +1,21 @@
 <?php
-require_once(DIRNAME.'lib/system/db/Database.php');
-require_once(DIRNAME.'lib/AutoLoad.php');
-require_once(DIRNAME.'lib/Input.php');
-require_once(DIRNAME.'lib/system/languages/Languages.php');
-require_once(DIRNAME.'lib/system/user/session/Session.php');
-require_once(DIRNAME.'lib/system/user/User.php');
-require_once(DIRNAME.'lib/system/user/group/GroupOption.php');
-require_once(DIRNAME.'lib/system/menu/Menu.php');
-require_once(DIRNAME.'lib/system/event/EventManger.php');
-require_once(DIRNAME.'lib/system/event/template/TemplateEventManger.php');
-require_once(DIRNAME.'lib/Template.php');
+namespace routecms;
+
+use routecms\system\db\Database;
+use routecms\system\event\EventManger;
+use routecms\system\event\template\TemplateEventManger;
+use routecms\system\languages\Languages;
+use routecms\system\menu\Menu;
+use routecms\system\user\User;
+use routecms\system\user\group\GroupOption;
+use routecms\system\user\session\Session;
+use routecms\actions\AjaxError;
+use routecms\pages\Error;
+
+spl_autoload_register(array('routecms\Routecms',
+	'autoload'));
+
+
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Routecms.php
@@ -79,7 +85,6 @@ class Routecms {
 		self::$db = new Database($db["host"], $db["db"], $db["user"], $db["pw"]);
 		if(!defined('DB_PREFIX'))
 			define('DB_PREFIX', $db["prefix"]);
-		autoLoad();
 		EventManger::loadEvents();
 		TemplateEventManger::loadEvents();
 		self::getPage();
@@ -87,9 +92,9 @@ class Routecms {
 			self::$session = Session::getSession();
 		}
 		if(self::$session && self::$session->sessionID != '' && self::$page == "Login") {
-			redirect("?page=Index");
+			self::redirect("?page=Index");
 		}elseif(!self::$session && self::$page != "Login") {
-			redirect("?page=Login");
+			self::redirect("?page=Login");
 		}
 		if(self::$session && self::$session->sessionID != '') {
 			self::$session->updateTime();
@@ -99,11 +104,11 @@ class Routecms {
 		if(isset($_GET['l'])) {
 			self::$language = new Languages(intval($_GET['l']));
 			if(self::$language->languageID == null) {
-				self::$language = Languages::getBy("isDefault", 1, DIRNAME.'lib/system/languages/Languages.php', "Languages");
+				self::$language = Languages::getBy("isDefault", 1, 'routecms\system\languages\Languages');
 			}
 		}else {
 			if(self::$language == null) {
-				self::$language = Languages::getBy("isDefault", 1, DIRNAME.'lib/system/languages/Languages.php', "Languages");
+				self::$language = Languages::getBy("isDefault", 1, 'routecms\system\languages\Languages');
 			}
 		}
 		self::$routecms = $this;
@@ -119,10 +124,31 @@ class Routecms {
 			return self::$page;
 		}
 		self::$page = Input::get("page", "string", "Index");
-		if(!preg_match("/^[a-z_A-Z0-9]+$/s",self::$page)){
+		if(!preg_match("/^[a-z_A-Z0-9]+$/s", self::$page)) {
 			self::redirect("index.php?page=Index");
 		}
 		return self::$page;
+	}
+
+	/**
+	 *
+	 *
+	 * @param    string $className
+	 *
+	 * @see        spl_autoload_register()
+	 */
+	public static function autoload($className) {
+		$namespaces = explode('\\', $className);
+		if(count($namespaces) > 1) {
+			$prefix = array_shift($namespaces);
+			if($prefix === '') {
+				array_shift($namespaces);
+			}
+			$classPath = DIRNAME.'lib/'.implode('/', $namespaces).'.php';
+			if(file_exists($classPath)) {
+				require_once($classPath);
+			}
+		}
 	}
 
 	/**
@@ -202,34 +228,33 @@ class Routecms {
 	 */
 	public function startTemplate() {
 		if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-			if(file_exists(DIRNAME."lib/actions/".self::$page.".php")) {
-				require_once(DIRNAME."lib/actions/".self::$page.".php");
-				$ajax = new self::$page();
+			$class = 'routecms\actions\\'.self::$page;
+			if(class_exists($class)) {
+				$ajax = new $class();
 				$ajax->__run();
 			}else {
-				require_once(DIRNAME."lib/actions/Error.php");
-				$ajax = new Error();
+				$ajax = new AjaxError();
 				$ajax->__run();
 			}
 		}else {
-			if(file_exists(DIRNAME."lib/pages/".self::$page.".php")) {
-				require_once(DIRNAME."lib/pages/".self::$page.".php");
-				$localPage = new self::$page();
-				self::$template = new Template($localPage->template);
+			$class = 'routecms\pages\\'.self::$page;
+			if(class_exists($class)) {
+				$localPage = new $class();
+				self::$template = new Template($localPage->template, "lib/template/");
 				$localPage->__run();
 
 			}else {
-				require_once(DIRNAME."lib/pages/Error.php");
 				$localPage = new Error();
 				self::$template = new Template($localPage->template);
 				$localPage->__run();
 			}
 		}
 	}
+
 	/**
 	 * Fügt in das Template System standard Variablen ein
 	 */
-	public static function getInstance(){
+	public static function getInstance() {
 		return self::$routecms;
 	}
 
@@ -237,12 +262,13 @@ class Routecms {
 	 * Fragt die Berechtigungen des Aktuellen Benutzers ab
 	 *
 	 * @param array $permissions
+	 *
 	 * @return boolean
 	 */
-	public static function checkPermissions(array $permissions){
+	public static function checkPermissions(array $permissions) {
 		$result = true;
-		foreach($permissions as $permission){
-			if(!self::checkPermission($permission)){
+		foreach($permissions as $permission) {
+			if(!self::checkPermission($permission)) {
 				$result = false;
 			}
 		}
@@ -253,10 +279,11 @@ class Routecms {
 	 * Fragt eine Berechtigung des Aktuellen Benutzers ab
 	 *
 	 * @param string $permission
+	 *
 	 * @return boolean
 	 */
-	public static function checkPermission($permission){
-		if(self::getPermission($permission) == 1){
+	public static function checkPermission($permission) {
+		if(self::getPermission($permission) == 1) {
 			return true;
 		}
 		return false;
@@ -266,11 +293,11 @@ class Routecms {
 	 * Führt eine PHP Funktion aus
 	 *
 	 * @param string $name
-	 * @param array<mixed> $arguments
+	 * @param        array <mixed> $arguments
 	 *
 	 * @return mixed
 	 */
-	public function __call($name, array $arguments){
+	public function __call($name, array $arguments) {
 		return call_user_func_array($name, $arguments);
 	}
 
@@ -279,29 +306,27 @@ class Routecms {
 	 * Gibt eine Berechtigung des aktuellen Benutzers zurück
 	 *
 	 * @param string $permission
+	 *
 	 * @return mixed
 	 */
-	public static function getPermission($permission){
+	public static function getPermission($permission) {
 		return GroupOption::getOptionValue($permission);
 	}
+	/**
+	 * Gibt den Inhalt einer Sprachvariabel zurück
+	 *
+	 * @param string $string
+	 *
+	 * @return string
+	 */
+	public static function lang($string) {
+		return Routecms::getLanguage()->get($string);
+
+	}
 }
+
 
 // definiert die escapeString methode
 function escapeString($string) {
 	return Routecms::getDB()->escapeString($string);
-}
-
-// definiert die lang methode methode
-function lang($string) {
-	return Routecms::getLanguage()->get($string);
-}
-
-// definiert die redirect methode methode
-function redirect($location) {
-	Routecms::redirect($location);
-}
-
-// definiert die HTML kodirungs methode
-function HTMLEncode($string) {
-	return Routecms::encodeHTML($string);
 }

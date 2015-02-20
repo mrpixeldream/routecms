@@ -1,7 +1,12 @@
 <?php
-require_once(DIRNAME . 'lib/pages/class/Page.php');
-require_once(DIRNAME . 'lib/system/user/group/Group.php');
-require_once(DIRNAME . 'lib/system/user/group/GroupOptionCategory.php');
+namespace routecms\admin\pages;
+use routecms\pages\Page;
+use routecms\system\user\group\Group;
+use routecms\system\user\group\GroupOption;
+use routecms\system\user\group\GroupOptionCategory;
+use routecms\exception\PermissionException;
+use routecms\Routecms;
+use routecms\Input;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Index.php

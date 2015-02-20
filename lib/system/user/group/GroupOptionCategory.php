@@ -1,6 +1,7 @@
 <?php
-require_once(DIRNAME.'lib/system/dbObject.php');
-require_once(DIRNAME.'lib/system/user/group/GroupOption.php');
+namespace routecms\system\user\group;
+use routecms\system\DBObject;
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : GroupOptionCategory.php

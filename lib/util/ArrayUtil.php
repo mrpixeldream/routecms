@@ -1,5 +1,5 @@
 <?php
-
+namespace routecms\util;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Array.php
 Beschreibung 	 : Eine Hilfsklasse für arrays

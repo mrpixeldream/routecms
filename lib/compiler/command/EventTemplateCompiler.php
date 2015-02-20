@@ -1,8 +1,11 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
-require_once(DIRNAME.'lib/system/event/template/TemplateEventManger.php');
-
+namespace routecms\compiler\command;
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
+use routecms\Routecms;
+use routecms\exception\SystemException;
+use routecms\system\event\template\TemplateEventManger;
+use routecms\Template;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : EventTemplateCompiler.php
 Beschreibung 	 : Template Event Tag Kompilirungs Klasse
@@ -31,7 +34,7 @@ class EventTemplateCompiler extends TemplateCompiler {
 			$args[$name] = $value;
 		}
 		if(!isset($args["name"])) {
-			throw new Exception("Fehler beim Kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', kein Event Name Variabel angegeben");
+			throw new SystemException("Fehler beim Kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', kein Event Name Variabel angegeben");
 		}
 		$name = $args["name"];
 		$name = str_replace('"', '', $name);

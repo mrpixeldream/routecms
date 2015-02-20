@@ -5,7 +5,7 @@
 ?>
 <?php if($this->vars['template'] != 'login' && $this->vars['template'] != 'errorLogin') { ?>
     <footer>
-        <a href="http://www.routecms.de"><p><?php echo lang("system.copyright") ?></p></a>
+        <a href="http://www.routecms.de"><p><?php echo routecms\Routecms::lang("system.copyright") ?></p></a>
     </footer>
     </div>
     </div>
@@ -15,13 +15,13 @@
     </div>
     <footer>
         <div>
-            <a href="http://www.routecms.de"><p><?php echo lang("system.copyright") ?></p></a>
+            <a href="http://www.routecms.de"><p><?php echo routecms\Routecms::lang("system.copyright") ?></p></a>
         </div>
     </footer>
 <?php } ?>
 <script>
     $lang = { };
-    $lang["system.menu.back"] = '<?php echo lang("system.menu.back") ?>';
+    $lang["system.menu.back"] = '<?php echo routecms\Routecms::lang("system.menu.back") ?>';
 </script>
 <script src="js/vendor/jquery.js"></script>
 <script src="js/foundation.min.js"></script>
@@ -45,8 +45,8 @@
     $(document).foundation('tab', 'reflow');
 </script>
 <div class="reveal-modal" data-reveal id="ajaxError">
-    <h1><?php echo lang("error.unknown") ?></h1>
-    <span class="error"><?php echo lang("error.unknown.description") ?></span>
+    <h1><?php echo routecms\Routecms::lang("error.unknown") ?></h1>
+    <span class="error"><?php echo routecms\Routecms::lang("error.unknown.description") ?></span>
     <a class="close-reveal-modal">&#215;</a>
 </div>
 </body>

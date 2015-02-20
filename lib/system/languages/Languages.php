@@ -1,5 +1,6 @@
 <?php
-require_once(DIRNAME.'lib/system/dbObject.php');
+namespace routecms\system\languages;
+use routecms\system\DBObject;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Languages.php

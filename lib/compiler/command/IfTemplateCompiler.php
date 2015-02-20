@@ -1,7 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
-
+namespace routecms\compiler\command;
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
+use routecms\compiler\Handler;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : IfTemplateCompiler.php
 Beschreibung 	 : If Tag Template Kompilirungs Klasse
@@ -16,9 +17,9 @@ class IfTemplateCompiler extends TemplateCompiler {
 	 */
 	public function compileTag() {
 		$result = '';
-		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array('routecms\compiler\QuoteCompiler',
 			'replaceSingleQuotesCallback'), $this->args);
-		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array('routecms\compiler\QuoteCompiler',
 			'replaceDoubleQuotesCallback'), $this->args);
 		$this->args = str_replace(' ', '', $this->args);
 

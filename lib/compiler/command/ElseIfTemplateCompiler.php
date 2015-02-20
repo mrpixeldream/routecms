@@ -1,6 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
+namespace routecms\compiler\command;
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
+use routecms\compiler\Handler;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : ElseIfTemplateCompiler.php

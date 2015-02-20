@@ -1,7 +1,9 @@
 <?php
-require_once(DIRNAME."lib/system/dbObject.php");
-require_once(DIRNAME."lib/system/user/User.php");
-require_once(DIRNAME."lib/system/option/Option.php");
+namespace routecms\system\user\session;
+use routecms\system\DBObject;
+use routecms\system\user\User;
+use routecms\system\option\Option;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Session.php

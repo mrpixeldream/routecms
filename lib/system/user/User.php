@@ -1,5 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/system/dbObject.php');
+namespace routecms\system\user;
+use routecms\system\DBObject;
+use routecms\Routecms;
+use routecms\Input;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : User.php

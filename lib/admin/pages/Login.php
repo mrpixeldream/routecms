@@ -1,5 +1,11 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/Page.php');
+namespace routecms\admin\pages;
+use routecms\pages\Page;
+use routecms\exception\InputException;
+use routecms\system\user\User;
+use routecms\system\user\session\Session;
+use routecms\Routecms;
+use routecms\Input;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Login.php

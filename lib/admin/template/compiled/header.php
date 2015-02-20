@@ -4,9 +4,9 @@
  */
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="<?php echo HTMLEncode($this->vars['country']) ?>">
+<html dir="ltr" lang="<?php echo routecms\util\String::HTMLEncode($this->vars['country']) ?>">
 <head>
-    <title><?php echo "Routecms" ?> - <?php echo lang($this->vars['title']) ?></title>
+    <title><?php echo "Routecms" ?> - <?php echo routecms\Routecms::lang($this->vars['title']) ?></title>
     <base href="<?php echo $this->vars['baseHref'] ?>">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>

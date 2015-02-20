@@ -1,6 +1,6 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/SortPage.php');
-require_once(DIRNAME.'lib/system/user/group/Group.php');
+namespace routecms\admin\pages;
+use routecms\pages\SortPage;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : GroupList.php
@@ -22,7 +22,7 @@ class GroupList extends SortPage {
 	/**
 	 * @see    SortPage::$class
 	 */
-	public $class = "Group";
+	public $class = 'routecms\system\user\group\Group';
 
 	/**
 	 * @see    SortPage::$defaultField

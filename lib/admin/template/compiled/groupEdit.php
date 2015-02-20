@@ -14,7 +14,7 @@
             <?php foreach($this->vars['tree'] as $this->vars['category']){?>
                 <li role="presentational"
                     class="tab-title small<?php if($this->vars['first']) { ?> active<?php $this->vars["first"] =false; ?><?php } ?>"><a
-                            href="index.php?page=groupEdit&groupID=<?php echo intval($this->vars['groupID']) ?>#category<?php echo $this->vars['category']->categoryID ?>"><?php echo lang("user.category.".$this->vars['category']->name) ?></a>
+                            href="index.php?page=groupEdit&groupID=<?php echo intval($this->vars['groupID']) ?>#category<?php echo $this->vars['category']->categoryID ?>"><?php echo routecms\Routecms::lang("user.category.".$this->vars['category']->name) ?></a>
                 </li>
             <?php } ?>
         </ul>
@@ -29,7 +29,7 @@
                             <?php foreach($this->vars['category']->getParent() as $this->vars['parent']){?>
                                 <li role="presentational"
                                     class="tab-title<?php if($this->vars['first']) { ?> active<?php $this->vars["first"] =false; ?><?php } ?>"><a
-                                            href="index.php?page=groupEdit&groupID=<?php echo intval($this->vars['groupID']) ?>#category<?php echo $this->vars['parent']->categoryID ?>"><?php echo lang("user.category.".$this->vars['parent']->name) ?></a>
+                                            href="index.php?page=groupEdit&groupID=<?php echo intval($this->vars['groupID']) ?>#category<?php echo $this->vars['parent']->categoryID ?>"><?php echo routecms\Routecms::lang("user.category.".$this->vars['parent']->name) ?></a>
                                 </li>
                             <?php } ?>
                         </ul>
@@ -40,7 +40,7 @@
                                      aria-hidden="true" id="category<?php echo $this->vars['parent']->categoryID ?>">
                                     <?php if(count($this->vars['parent']->getOptionList()) > 0){ ?>
                                         <fieldset>
-                                            <legend><?php echo lang("user.category.".$this->vars['parent']->name) ?></legend>
+                                            <legend><?php echo routecms\Routecms::lang("user.category.".$this->vars['parent']->name) ?></legend>
                                             <div class="row">
                                                 <?php foreach($this->vars['parent']->getOptionList() as $this->vars["option"]){?>
                                                     <?php $this->vars["value"] =$this->vars['optionList'][$this->vars['option']->optionID]["output"]->getValue(); ?>
@@ -52,7 +52,7 @@
                                     <?php foreach($this->vars['parent']->getParent() as $this->vars['optionCategory']){?>
                                         <?php if(count($this->vars['optionCategory']->getOptionList()) > 0){ ?>
                                             <fieldset>
-                                                <legend><?php echo lang("user.category.".$this->vars['optionCategory']->name) ?></legend>
+                                                <legend><?php echo routecms\Routecms::lang("user.category.".$this->vars['optionCategory']->name) ?></legend>
                                                 <div class="row">
                                                     <?php foreach($this->vars['optionCategory']->getOptionList() as $this->vars["option"]){?>
                                                         <?php $this->vars["value"] =$this->vars['optionList'][$this->vars['option']->optionID]["output"]->getValue(); ?>
@@ -74,8 +74,8 @@
         <div class="large-5 small-12 medium-3 columns">
         </div>
         <div class="large-7 small-12 medium-9 columns">
-            <button type="submit"> <?php echo lang("system.global.button.send") ?></button>
-            <button type="submit"> <?php echo lang("system.global.button.back") ?></button>
+            <button type="submit"> <?php echo routecms\Routecms::lang("system.global.button.send") ?></button>
+            <button type="submit"> <?php echo routecms\Routecms::lang("system.global.button.back") ?></button>
         </div>
     </div>
 </form>

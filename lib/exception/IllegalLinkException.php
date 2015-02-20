@@ -1,4 +1,6 @@
 <?php
+namespace routecms\exception;
+use routecms\Routecms;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : PermissionException.php
 Beschreibung 	 : Fehler Klasse für die Berechtigungen
@@ -7,7 +9,7 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 04.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class IllegalLinkException extends Exception {
+class IllegalLinkException extends \Exception {
 	/**
 	 * Ruft eine Fehlerseite auf, die anzeigt das der Benutzer nicht die nötigen Rechte hat
 	 */

@@ -1,5 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/MultiPage.php');
+namespace routecms\pages;
+use routecms\Routecms;
+use routecms\Input;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : SortPage.php

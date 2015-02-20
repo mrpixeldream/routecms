@@ -1,5 +1,8 @@
 <?php
-require_once(DIRNAME . 'lib/system/dbObject.php');
+namespace routecms\system\user\group;
+use routecms\system\DBObject;
+use routecms\exception\SystemException;
+use routecms\Routecms;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : GroupOption.php
 Beschreibung 	 : System Klasse des Routecmss
@@ -34,16 +37,8 @@ class GroupOption extends dbObject{
 	 * @return string
 	 * @throws SystemException
 	 */
-	public function getOutput($group,$post = false){
-		$className = 'GroupOptionOutputType' . ucfirst($this->type);
-		$path = DIRNAME . 'lib/system/user/group/optionType/output/' . $className . '.php';
-		if(!file_exists($path)){
-			throw new SystemException(lang("exception.system.error.option.output.type.file"));
-		}
-		require_once($path);
-		if(!class_exists($className)){
-			throw new SystemException(lang("exception.system.error.option.output.type.no.class"));
-		}
+	public function getOutput(Group $group,$post = false){
+		$className = 'routecms\system\user\group\optionType\output\GroupOptionOutputType' . ucfirst($this->type);
 		return new $className($this, $group, $post);
 	}
 	/**
@@ -89,10 +84,10 @@ class GroupOption extends dbObject{
 		$statement->execute(array($permission));
 		$row = $statement->fetchArray();
 		if(!$row){
-			throw new SystemException(lang("exception.system.error.false.permission"));
+			throw new SystemException(Routecms::getLanguage()->get("exception.system.error.false.permission"));
 		}
 		if(!isset($row["optionID"])){
-			throw new SystemException(lang("exception.system.error.false.permission"));
+			throw new SystemException(Routecms::getLanguage()->get("exception.system.error.false.permission"));
 		}
 		return self::getOptionValueByID(intval($row["optionID"]));
 	}
@@ -108,17 +103,10 @@ class GroupOption extends dbObject{
 	public static function getOptionValueByID($optionID){
 		$option = new GroupOption(intval($optionID));
 		if(!$option && $option->optionID == null && $option->optionID == 0){
-			throw new SystemException(lang("exception.system.error.false.optionID"));
+			throw new SystemException(Routecms::getLanguage()->get("exception.system.error.false.optionID"));
 		}
-		$className = 'GroupOptionType' . ucfirst($option->type);
-		$path = DIRNAME . 'lib/system/user/group/optionType/' . $className . '.php';
-		if(!file_exists($path)){
-			throw new SystemException(lang("exception.system.error.option.type.file"));
-		}
-		require_once($path);
-		if(!class_exists($className)){
-			throw new SystemException(lang("exception.system.error.option.type.no.class"));
-		}
+
+		$className = 'routecms\system\user\group\optionType\GroupOptionType' . ucfirst($option->type);
 		$optionType = new $className($option, Routecms::getUser()->getGroupIDs());
 		return $optionType->getValue();
 	}

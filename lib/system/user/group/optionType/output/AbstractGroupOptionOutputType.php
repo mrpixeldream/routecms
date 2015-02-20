@@ -1,6 +1,9 @@
 <?php
-require_once(DIRNAME . 'lib/system/user/group/GroupOption.php');
-require_once(DIRNAME . 'lib/system/user/group/Group.php');
+namespace routecms\system\user\group\optionType\output;
+use routecms\system\user\group\GroupOption;
+use routecms\system\user\group\Group;
+use routecms\Input;
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AbstractGroupOptionOutputType.php

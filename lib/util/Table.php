@@ -1,4 +1,6 @@
 <?php
+namespace routecms\util;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Table.php

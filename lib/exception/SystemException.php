@@ -1,4 +1,5 @@
 <?php
+namespace routecms\exception;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : SystemException.php
 Beschreibung 	 : Fehler Klasse für die Berechtigungen
@@ -7,7 +8,7 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 04.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class SystemException extends Exception {
+class SystemException extends \Exception {
 	/**
 	 * Ruft eine Fehlerseite auf, die anzeigt das der Benutzer nicht die nötigen Rechte hat
 	 *

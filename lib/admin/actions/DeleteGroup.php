@@ -1,5 +1,9 @@
 <?php
-require_once(DIRNAME.'lib/actions/class/Ajax.php');
+namespace routecms\admin\actions;
+use routecms\actions\Ajax;
+use routecms\exception\PermissionExceptionAjax;
+use routecms\Routecms;
+use routecms\Input;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : DeleteGroup.php
 Beschreibung 	 : Ajax Anfrage Seiten um Benutzergruppen zu löschen

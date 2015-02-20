@@ -1,4 +1,5 @@
 <?php
+namespace routecms\compiler;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Output.php
@@ -62,7 +63,7 @@ class Output {
 		$compiler = new ArgCompiler($this->tag);
 		$this->tag = '<?php echo ';
 		if($this->HTML) {
-			$this->tag .= 'HTMLEncode(';
+			$this->tag .= 'routecms\util\String::HTMLEncode(';
 		}elseif($this->numeric) {
 			$this->tag .= 'intval(';
 		}

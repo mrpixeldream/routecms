@@ -1,5 +1,7 @@
 <?php
-require_once(DIRNAME."lib/Routecms.php");
+namespace routecms\system;
+use routecms\system\event\EventManger;
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : DBObject.php
@@ -71,18 +73,17 @@ abstract class DBObject {
 	 *
 	 * @param string $name
 	 * @param string $value
-	 * @param string $path
-	 * @param string $class
+	 * @param string $namespace
 	 *
 	 * @return object
 	 */
-	public static function getBy($name, $value, $path, $class) {
+	public static function getBy($name, $value, $namespace) {
 		$sql = "SELECT	*
 				FROM	".static::getDBName()."
 				WHERE	".$name." = ?";
 		$statement = Routecms::getDB()->statement($sql, 1);
 		$statement->execute(array($value));
-		return $statement->fetchObject($path, $class);
+		return $statement->fetchObject($namespace);
 	}
 
 	/**

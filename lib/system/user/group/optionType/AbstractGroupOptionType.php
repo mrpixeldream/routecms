@@ -1,5 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/system/user/group/GroupOption.php');
+namespace routecms\system\user\group\optionType;
+use routecms\system\user\group\GroupOption;
+use routecms\Routecms;
+use routecms\exception\SystemException;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AbstractGroupOptionType.php

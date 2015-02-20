@@ -14,7 +14,7 @@
                     <span class="avatar switch round" style="background-image: url('../avatar/test.jpg');"></span>
                 </div>
                 <div class="large-8 medium-8 small-7 columns loginInfo">
-                    <?php echo lang("user.welcome.back") ?> <a href="index.php?page=User&amp;userID=<?php echo intval($this->vars['user']->userID) ?>"><?php echo HTMLEncode($this->vars['user']->username) ?></a>
+                    <?php echo routecms\Routecms::lang("user.welcome.back") ?> <a href="index.php?page=User&amp;userID=<?php echo intval($this->vars['user']->userID) ?>"><?php echo routecms\util\String::HTMLEncode($this->vars['user']->username) ?></a>
                 </div>
             </div>
         </li>

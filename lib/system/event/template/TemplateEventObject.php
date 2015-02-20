@@ -1,5 +1,6 @@
 <?php
-require_once(DIRNAME.'lib/system/dbObject.php');
+namespace routecms\system\event\template;
+use routecms\system\DBObject;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : TemplateEventObject.php

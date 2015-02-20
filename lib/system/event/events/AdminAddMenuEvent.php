@@ -1,6 +1,7 @@
 <?php
-require_once(DIRNAME.'lib/system/event/events/AbstractEvent.php');
-require_once(DIRNAME.'lib/system/menu/AdminMenu.php');
+namespace routecms\system\event\events;
+use routecms\Routecms;
+use routecms\system\menu\AdminMenu;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AbstractEvent.php
 Beschreibung 	 : Abstrakte Klasse für die Events

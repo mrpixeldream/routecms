@@ -1,5 +1,5 @@
 <?php
-
+namespace routecms\system\db;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Statement.php
 Beschreibung 	 : Prepared statement Klasse
@@ -75,16 +75,14 @@ class Statement {
 	/**
 	 * Gibt die aktuelle Spalte der SQL Abfrage Class Objekt zurück
 	 *
-	 * @param string $path
-	 * @param string $className
+	 * @param string $namespace
 	 *
 	 * @return object
 	 */
-	public function fetchObject($path, $className) {
-		require_once($path);
+	public function fetchObject($namespace) {
 		$row = $this->fetchArray();
 		if($row !== false) {
-			return new $className(null, $row);
+			return new $namespace(null, $row);
 		}
 
 		return null;

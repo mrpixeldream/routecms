@@ -1,5 +1,7 @@
 <?php
-require_once(DIRNAME.'lib/compiler/Handler.php');
+namespace routecms;
+use routecms\compiler\Handler;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Template.php
@@ -62,12 +64,12 @@ class Template {
 	 * @param string $name
 	 * @param string $path
 	 */
-	public function __construct($name, $path = "lib/template/") {
+	public function __construct($name, $path = '"lib/template/') {
 		$this->name = $name;
 		$this->path = $path;
 		$this->start = preg_quote('{', '~').'(?=\S)';
 		$this->end = '(?<=\S)'.preg_quote('}', '~');
-		$this->content = file_get_contents(DIRNAME.$this->path.$this->name.".tpl");
+		$this->content = file_get_contents(DIRNAME.$this->path.$this->name.'.tpl');
 		$this->content = self::replacePHP($this->content);
 		$this->hash = sha1($this->content);
 		$url = (isset($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

@@ -1,5 +1,6 @@
 <?php
-require_once('TemplateEventObject.php');
+namespace routecms\system\event\template;
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : TemplateEventManger.php

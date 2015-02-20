@@ -1,5 +1,5 @@
 <?php
-
+namespace routecms;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Input.php
 Beschreibung 	 : Input Class für gesendete Informationen

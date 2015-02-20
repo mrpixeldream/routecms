@@ -1,4 +1,8 @@
 <?php
+namespace routecms\actions;
+use routecms\exception\PermissionExceptionAjax;
+use routecms\Routecms;
+use routecms\system\event\EventManger;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Ajax.php
 Beschreibung 	 : Eine Abstrakte Seite für Ajax Anforderungen

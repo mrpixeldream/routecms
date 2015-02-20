@@ -1,12 +1,11 @@
 <?php
-namespace routecms\compiler\command;
-
+namespace routecms\actions;
 /*--------------------------------------------------------------------------------------------------
-Datei      		 : CountEndTemplateCompiler.php
-Beschreibung 	 : Count End Tag Template Kompilirungs Klasse
+Datei      		 : AjaxError.php
+Beschreibung 	 : Eine Abstrakte Seite für Ajax Anforderungen
 Copyright  		 : Routecms © 2015
 Author 		     : Olaf Braun
-Letzte Änderung  : 20.01.2015 Olaf Braun
+Letzte Änderung  : 20.02.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class CountEndTemplateCompiler extends IfEndTemplateCompiler {}
+class AjaxError extends  Ajax {}

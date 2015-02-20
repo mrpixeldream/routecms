@@ -1,4 +1,9 @@
 <?php
+namespace routecms\pages;
+use routecms\Routecms;
+use routecms\Input;
+use routecms\system\event\EventManger;
+use routecms\exception\PermissionException;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Page.php
@@ -68,7 +73,7 @@ abstract class Page {
 		try {
 			$this->validate();
 			$this->save();
-		}catch(Exception $ex) {
+		}catch(\Exception $ex) {
 
 		}
 	}

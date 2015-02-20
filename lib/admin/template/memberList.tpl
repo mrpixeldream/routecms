@@ -22,7 +22,7 @@
             <tr data-row-id="{#$user->userID}">
                 <td>
                     <a href="index.php?page=user&amp;userID={#$user->userID}">{#$user->userID}</a>
-                    {if $__Routecms->checkPermission("admin.can.delete.user") && $__Routecms->__call(array('User', 'canMangedUser'), array($user))}
+                    {if $__Routecms->checkPermission("admin.can.delete.user") && $__Routecms->__call(array('routecms\system\user\User', 'canMangedUser'), array($user))}
                         <i class="ajaxMessage alert fi-x" aria-haspopup="true" data-tooltip
                            data-reveal-id="userDeleteID{#$user->userID}" title="{lang "user.delete"}"></i>
                         <div class="reveal-modal ajax" data-action="delete" id="userDeleteID{#$user->userID}"

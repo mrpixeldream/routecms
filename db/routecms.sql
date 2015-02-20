@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 19. Feb 2015 um 12:20
+-- Erstellungszeit: 20. Feb 2015 um 15:05
 -- Server Version: 5.5.34
 -- PHP-Version: 5.4.22
 
@@ -66,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `routecms_event` (
 --
 
 INSERT INTO `routecms_event` (`eventID`, `class`, `event`, `eventClass`, `admin`) VALUES
-(1, 'AdminAddMenu', 'fetchTemplate', 'Template', 1),
-(2, 'AdminAddMenu', 'showTemplate', 'Template', 1);
+(1, 'AdminAddMenu', 'fetchTemplate', 'routecms\\Template', 1),
+(2, 'AdminAddMenu', 'showTemplate', 'routecms\\Template', 1);
 
 -- --------------------------------------------------------
 
@@ -184,11 +184,11 @@ INSERT INTO `routecms_group_option_value` (`optionID`, `groupID`, `value`) VALUE
 (1, 1, '0'),
 (1, 2, '0'),
 (1, 3, '1'),
-(2, 3, '0'),
+(2, 3, '1'),
 (3, 3, '1'),
 (4, 3, '1'),
 (5, 3, '1'),
-(6, 3, '1\n3');
+(6, 3, '1\n2\n3');
 
 -- --------------------------------------------------------
 
@@ -286,6 +286,14 @@ CREATE TABLE IF NOT EXISTS `routecms_session` (
   KEY `userID` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Daten für Tabelle `routecms_session`
+--
+
+INSERT INTO `routecms_session` (`sessionID`, `userID`, `pw`, `lastTime`, `ipAddress`) VALUES
+('dT1VxNRQHWKGh7v6qerzeA0K6zAg2303m58GOt45l5oF96uxGI', 1, 'cecdb7add87be5c6762151976a03cd4becc00872', 1424440593, '::ffff:7f00:1'),
+('u083oAJSrcVlA4vOkeC5pS0ysBfQ7RaM0rC42Q402pC3Pl39Af', 1, '5aaae2067c616a62893b06c99c2eb6e8777ce19c', 1424345578, '::ffff:7f00:1');
+
 -- --------------------------------------------------------
 
 --
@@ -300,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `routecms_template_event` (
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`temaplteEventID`),
   UNIQUE KEY `temaplteEventID` (`temaplteEventID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -316,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `routecms_user` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`userID`),
   KEY `userID` (`userID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `routecms_user`

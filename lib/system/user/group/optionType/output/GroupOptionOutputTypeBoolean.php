@@ -1,5 +1,6 @@
 <?php
-require_once(DIRNAME.'lib/system/user/group/optionType/output/AbstractGroupOptionOutputType.php');
+namespace routecms\system\user\group\optionType\output;
+use routecms\Input;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : GroupOptionOutputTypeBoolean.php
