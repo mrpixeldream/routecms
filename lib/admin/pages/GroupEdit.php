@@ -5,6 +5,7 @@ use routecms\system\user\group\Group;
 use routecms\system\user\group\GroupOption;
 use routecms\system\user\group\GroupOptionCategory;
 use routecms\exception\PermissionException;
+use routecms\exception\IllegalLinkException;
 use routecms\Routecms;
 use routecms\Input;
 
