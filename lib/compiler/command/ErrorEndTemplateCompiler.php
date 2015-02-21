@@ -9,4 +9,5 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 13.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class ErrorEndTemplateCompiler extends IfEndTemplateCompiler {}
+class ErrorEndTemplateCompiler extends IfEndTemplateCompiler {
+}

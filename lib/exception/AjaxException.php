@@ -16,12 +16,10 @@ class AjaxException extends \Exception {
 	public function __construct($errorCode, $title, $description) {
 		ob_clean();
 		$header = '';
-		$response = array(
-			'code' => $errorCode,
+		$response = array('code' => $errorCode,
 			'title' => $title,
-			'description' => $description
-		);
-		switch ($errorCode) {
+			'description' => $description);
+		switch($errorCode) {
 			case 400:
 				$header = 'HTTP/1.0 400 Bad Request';
 				break;

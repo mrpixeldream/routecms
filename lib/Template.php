@@ -1,5 +1,6 @@
 <?php
 namespace routecms;
+
 use routecms\compiler\Handler;
 use routecms\system\event\EventManger;
 
@@ -139,9 +140,9 @@ class Template {
 		$this->hash = sha1($this->content);
 		$this->assign(array('country' => Routecms::getLanguage()->country));
 		$this->saveTemplate();
-		if(!$return){
+		if(!$return) {
 			$this->showTemplate();
-		}else{
+		}else {
 			ob_start();
 			$this->showTemplate();
 			$content = ob_get_contents();

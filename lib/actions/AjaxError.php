@@ -8,4 +8,5 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 20.02.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class AjaxError extends  Ajax {}
+class AjaxError extends Ajax {
+}

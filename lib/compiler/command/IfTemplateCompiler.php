@@ -1,8 +1,10 @@
 <?php
 namespace routecms\compiler\command;
+
 use routecms\compiler\ArgCompiler;
-use routecms\compiler\QuoteCompiler;
 use routecms\compiler\Handler;
+use routecms\compiler\QuoteCompiler;
+
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : IfTemplateCompiler.php
 Beschreibung 	 : If Tag Template Kompilirungs Klasse

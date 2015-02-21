@@ -1,9 +1,10 @@
 <?php
 namespace routecms\system\user\session;
+
 use routecms\system\DBObject;
-use routecms\system\user\User;
-use routecms\system\option\Option;
 use routecms\system\event\EventManger;
+use routecms\system\option\Option;
+use routecms\system\user\User;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Session.php

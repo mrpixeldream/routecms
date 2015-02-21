@@ -1,9 +1,10 @@
 <?php
 namespace routecms\pages;
-use routecms\Routecms;
-use routecms\Input;
-use routecms\system\event\EventManger;
+
 use routecms\exception\PermissionException;
+use routecms\Input;
+use routecms\Routecms;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Page.php
@@ -44,15 +45,15 @@ abstract class Page {
 	 * Starte die Seiten Klassen Funktionen
 	 **/
 	public function __run() {
-		if(count($this->permissions) > 0){
-			if(!Routecms::checkPermissions($this->permissions)){
+		if(count($this->permissions) > 0) {
+			if(!Routecms::checkPermissions($this->permissions)) {
 				throw new PermissionException();
 			}
 		}
-		$this->read();	
+		$this->read();
 		if(Input::isPost()) {
 			$this->submit();
-		}	
+		}
 		$this->show();
 	}
 
@@ -61,7 +62,7 @@ abstract class Page {
 	 **/
 	public function read() {
 		EventManger::event("read", get_class($this), $this);
-		
+
 	}
 
 	/**

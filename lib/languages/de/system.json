@@ -34,5 +34,6 @@
   "system.form.empty": "Das Eingabe Feld ist leer",
   "system.page.title.members": "Mitglieder",
   "system.admin.page.members": "Mitglieder",
-  "system.page.groupEdit": "Benutzergruppe bearbeiten"
+  "system.page.groupEdit": "Benutzergruppe bearbeiten",
+  "system.page.userEdit": "Benutzer bearbeiten"
 }

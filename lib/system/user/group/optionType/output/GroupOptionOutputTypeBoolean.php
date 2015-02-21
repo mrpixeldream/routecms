@@ -1,5 +1,6 @@
 <?php
 namespace routecms\system\user\group\optionType\output;
+
 use routecms\Input;
 
 /*--------------------------------------------------------------------------------------------------
@@ -15,18 +16,18 @@ class GroupOptionOutputTypeBoolean extends AbstractGroupOptionOutputType {
 	/**
 	 * @see AbstractGroupOptionOutputType::getTemplate()
 	 */
-	public function getTemplate(){
+	public function getTemplate() {
 		return "groupOptionBoolean";
 	}
 
 	/**
 	 * Ruft den Wert der Option ab
 	 */
-	protected function loadValue(){
+	protected function loadValue() {
 		$values = Input::post("groupOptionValues", "array", array());
-		if(isset($values[$this->option->name])){
+		if(isset($values[$this->option->name])) {
 			$this->value = 1;
-		}else{
+		}else {
 			$this->value = 0;
 		}
 	}

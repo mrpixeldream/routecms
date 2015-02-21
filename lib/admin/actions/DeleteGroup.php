@@ -1,9 +1,11 @@
 <?php
 namespace routecms\admin\actions;
+
 use routecms\actions\Ajax;
 use routecms\exception\PermissionExceptionAjax;
-use routecms\Routecms;
 use routecms\Input;
+use routecms\Routecms;
+
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : DeleteGroup.php
 Beschreibung 	 : Ajax Anfrage Seiten um Benutzergruppen zu löschen
@@ -30,7 +32,7 @@ class DeleteGroup extends Ajax {
 	public function read() {
 		parent::read();
 		$this->groupID = Input::get("groupID", "integer", 0);
-		if(!in_array($this->groupID, Routecms::getPermission("admin.can.mange.group"))){
+		if(!in_array($this->groupID, Routecms::getPermission("admin.can.mange.group"))) {
 			throw new PermissionExceptionAjax();
 		}
 	}
@@ -39,7 +41,8 @@ class DeleteGroup extends Ajax {
 	 * @see Ajax::getData()
 	 **/
 	public function getData() {
-		return array('action' => 'success', 'groupID' => $this->groupID);
+		return array('action' => 'success',
+			'groupID' => $this->groupID);
 	}
 
 	/**

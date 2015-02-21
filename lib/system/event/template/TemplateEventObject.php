@@ -1,5 +1,6 @@
 <?php
 namespace routecms\system\event\template;
+
 use routecms\system\DBObject;
 
 /*--------------------------------------------------------------------------------------------------
@@ -26,9 +27,9 @@ class TemplateEventObject extends DBObject {
 	 * @return string
 	 */
 	public function getPath() {
-		if($this->admin){
+		if($this->admin) {
 			return DIRNAME.'lib/admin/template/'.$this->templateInclude.'.tpl';
-		}else{
+		}else {
 			return DIRNAME.'lib/template/'.$this->templateInclude.'.tpl';
 		}
 	}

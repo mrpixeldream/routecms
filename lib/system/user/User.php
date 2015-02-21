@@ -1,8 +1,9 @@
 <?php
 namespace routecms\system\user;
-use routecms\system\DBObject;
-use routecms\Routecms;
+
 use routecms\Input;
+use routecms\Routecms;
+use routecms\system\DBObject;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : User.php
@@ -173,9 +174,9 @@ class User extends dbObject {
 	 * @return bool
 	 * @throws SystemException
 	 */
-	public static function canMangedUser($user){
+	public static function canMangedUser($user) {
 		$result = true;
-		if(!$user && !isset($user->userID) || $user->userID == 0){
+		if(!$user && !isset($user->userID) || $user->userID == 0) {
 			throw new SystemException(lang("exception.input.user.false"));
 		}
 		foreach($user->getGroupIDs() as $groupID) {
@@ -186,6 +187,7 @@ class User extends dbObject {
 		}
 		return $result;
 	}
+
 	/**
 	 * Überpürft ob der Aktuelle Benutzer einen User mit gegeben UserID löschen darf
 	 *
@@ -193,7 +195,7 @@ class User extends dbObject {
 	 *
 	 * @return boolean
 	 */
-	public static function canMangedUserByUserID($userID){
+	public static function canMangedUserByUserID($userID) {
 		return self::canMangedUser(new User($userID));
 	}
 

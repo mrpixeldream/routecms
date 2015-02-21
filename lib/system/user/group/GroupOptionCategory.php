@@ -1,7 +1,8 @@
 <?php
 namespace routecms\system\user\group;
-use routecms\system\DBObject;
+
 use routecms\Routecms;
+use routecms\system\DBObject;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : GroupOptionCategory.php
@@ -73,12 +74,13 @@ class GroupOptionCategory extends dbObject {
 		}
 		return $this->parent;
 	}
+
 	/**
 	 * Gibt eine Liste mit den Optionen dieser Kategorie zurück
 	 *
 	 * @return array<GroupOption>
 	 */
-	public function getOptionList(){
+	public function getOptionList() {
 		if(is_null($this->options)) {
 			$this->options = array();
 			$sql = "SELECT	*

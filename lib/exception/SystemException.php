@@ -12,16 +12,17 @@ class SystemException extends \Exception {
 	/**
 	 * Ruft eine Fehlerseite auf, die anzeigt das der Benutzer nicht die nötigen Rechte hat
 	 *
-	 * @param string $message
-	 * @param integer $code
+	 * @param string     $message
+	 * @param integer    $code
 	 * @param \Exception $previous
 	 *
 	 */
-	public function __construct($message = "" ,$code = 0, \Exception $previous = null ) {
-		parent::__construct($message,$code, $previous);
+	public function __construct($message = "", $code = 0, \Exception $previous = null) {
+		parent::__construct($message, $code, $previous);
 		echo $this->_getMessage();
 		exit;
 	}
+
 	/**
 	 *
 	 */

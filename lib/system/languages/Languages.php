@@ -1,5 +1,6 @@
 <?php
 namespace routecms\system\languages;
+
 use routecms\system\DBObject;
 
 /*--------------------------------------------------------------------------------------------------

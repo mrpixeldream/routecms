@@ -16,7 +16,8 @@ class PermissionExceptionAjax extends \Exception {
 		ob_clean();
 		@header('HTTP/1.0 403 Forbidden');
 		header('Content-type: application/json');
-		echo json_encode(array('title' => lang('exception.permission.denied'), 'description' => lang('exception.permission.denied.description')));
+		echo json_encode(array('title' => lang('exception.permission.denied'),
+			'description' => lang('exception.permission.denied.description')));
 		exit;
 	}
 

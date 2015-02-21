@@ -36,6 +36,9 @@ class DeleteUser extends Ajax {
 		if(!User::canMangedUserByUserID($this->userID)) {
 			throw new PermissionExceptionAjax();
 		}
+		if($this->userID == Routecms::getUser()->userID){
+			throw new PermissionExceptionAjax();
+		}
 	}
 
 	/**

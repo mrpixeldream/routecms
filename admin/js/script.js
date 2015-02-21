@@ -17,7 +17,7 @@ function stickyFooter() {
     }
 }
 
-function removeHeight(){
+function removeHeight() {
     $('div[role="navigation"]').css({'min-height': ""});
     $('div[role="mainContent"]').css({'min-height': ""});
 }

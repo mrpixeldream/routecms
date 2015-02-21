@@ -1,6 +1,5 @@
 <?php
 namespace routecms\system\db;
-use routecms\system\db\Statement;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Database.php

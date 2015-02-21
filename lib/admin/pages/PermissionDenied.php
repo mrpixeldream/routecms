@@ -1,6 +1,8 @@
 <?php
 namespace routecms\admin\pages;
+
 use routecms\pages\Page;
+
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : PermissionDenied.php
 Beschreibung 	 : Startseite des Routecms

@@ -1,6 +1,8 @@
 <?php
 namespace routecms\exception;
+
 use routecms\Routecms;
+
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : InputException.php
 Beschreibung 	 : Eingabe Fehlermeldungs Klasse

@@ -8,7 +8,7 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 16.02.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class ArrayUtil{
+class ArrayUtil {
 
 	/**
 	 * Gibt eine array zurück in der alle inhalte zu einer zahl um gewandelt werden
@@ -17,12 +17,11 @@ class ArrayUtil{
 	 *
 	 * @return array<integer>
 	 */
-	public static function toIntegerArray($array = array()){
-		if (!is_array($array)) {
+	public static function toIntegerArray($array = array()) {
+		if(!is_array($array)) {
 			return intval($array);
-		}
-		else {
-			foreach ($array as $key => $val) {
+		}else {
+			foreach($array as $key => $val) {
 				$array[$key] = self::toIntegerArray($val);
 			}
 			return $array;

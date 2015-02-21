@@ -1,8 +1,10 @@
 <?php
 namespace routecms\actions;
+
 use routecms\exception\PermissionExceptionAjax;
 use routecms\Routecms;
 use routecms\system\event\EventManger;
+
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Ajax.php
 Beschreibung 	 : Eine Abstrakte Seite für Ajax Anforderungen
@@ -30,8 +32,8 @@ class Ajax {
 	 * Starte die Ajax Anforderungs Klassen Funktionen
 	 **/
 	public function __run() {
-		if(count($this->permissions) > 0){
-			if(!Routecms::checkPermissions($this->permissions)){
+		if(count($this->permissions) > 0) {
+			if(!Routecms::checkPermissions($this->permissions)) {
 				throw new PermissionExceptionAjax();
 			}
 		}
@@ -58,18 +60,20 @@ class Ajax {
 		echo $json;
 		exit;
 	}
+
 	/**
 	 * Gibt eine Variabel zurück die zurück gegeben werden soll bei der Ajax Anforderung
 	 *
 	 * @return mixed
 	 **/
-	public function getData(){
+	public function getData() {
 
 	}
+
 	/**
 	 * Führt die Funktion aus die bei der Ajax Anfrage gemacht werden sollte
 	 **/
-	public function action(){
+	public function action() {
 
 	}
 }

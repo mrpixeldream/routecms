@@ -1,6 +1,8 @@
 <?php
 namespace routecms\exception;
+
 use routecms\Routecms;
+
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : PermissionException.php
 Beschreibung 	 : Fehler Klasse für die Berechtigungen

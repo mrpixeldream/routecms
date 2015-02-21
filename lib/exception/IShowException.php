@@ -7,7 +7,7 @@ Copyright  		 : Routecms © 2015
 Author 		     : Olaf Braun
 Letzte Änderung  : 04.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
-interface IShowException{
+interface IShowException {
 	/**
 	 * Gibt die Fehlermeldung aus
 	 */

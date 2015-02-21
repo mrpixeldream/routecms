@@ -9,4 +9,5 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 01.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class ForeachEndTemplateCompiler extends IfEndTemplateCompiler {}
+class ForeachEndTemplateCompiler extends IfEndTemplateCompiler {
+}

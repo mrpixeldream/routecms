@@ -9,7 +9,8 @@
                     <span class="avatar switch round" style="background-image: url('../avatar/test.jpg');"></span>
                 </div>
                 <div class="large-8 medium-8 small-7 columns loginInfo">
-                    {lang "user.welcome.back"} <a href="index.php?page=User&amp;userID={#$user->userID}">{$user->username}</a>
+                    {lang "user.welcome.back"} <a
+                            href="index.php?page=userEdit&amp;userID={#$user->userID}">{$user->username}</a>
                 </div>
             </div>
         </li>

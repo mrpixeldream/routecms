@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 20. Feb 2015 um 15:05
+-- Erstellungszeit: 21. Feb 2015 um 20:55
 -- Server Version: 5.5.34
 -- PHP-Version: 5.4.22
 
@@ -291,6 +291,8 @@ CREATE TABLE IF NOT EXISTS `routecms_session` (
 --
 
 INSERT INTO `routecms_session` (`sessionID`, `userID`, `pw`, `lastTime`, `ipAddress`) VALUES
+('91BJce907R7L9XjWRjY7bNZGU8Zndx7Ue1vM73t2owmX2aS5qu', 1, 'b9f550f0651aa3e6cc86cbf9e4cce96da5015fff', 1424548418, '::ffff:7f00:1'),
+('cFSf1DW10eJ0dlLsBNAOjg6072k7k37ifdS01C2k5Q9sUAtClO', 1, '61b561884dd9212964834879ce730956bb71d2e4', 1424459581, '::ffff:7f00:1'),
 ('dT1VxNRQHWKGh7v6qerzeA0K6zAg2303m58GOt45l5oF96uxGI', 1, 'cecdb7add87be5c6762151976a03cd4becc00872', 1424440593, '::ffff:7f00:1'),
 ('u083oAJSrcVlA4vOkeC5pS0ysBfQ7RaM0rC42Q402pC3Pl39Af', 1, '5aaae2067c616a62893b06c99c2eb6e8777ce19c', 1424345578, '::ffff:7f00:1');
 
@@ -324,14 +326,14 @@ CREATE TABLE IF NOT EXISTS `routecms_user` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`userID`),
   KEY `userID` (`userID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Daten für Tabelle `routecms_user`
 --
 
 INSERT INTO `routecms_user` (`userID`, `username`, `password`, `salt`, `email`) VALUES
-(1, 'Admin', '1a2bcfa7c06b7ab33c54e4bda8f72dcdb38d2e55', 'rSeeKX83FxKLj2w531Fh', '');
+(1, 'Admin', '1a2bcfa7c06b7ab33c54e4bda8f72dcdb38d2e55', 'rSeeKX83FxKLj2w531Fh', 'Admin@routecms.de');
 
 -- --------------------------------------------------------
 

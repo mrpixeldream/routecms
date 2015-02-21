@@ -1,20 +1,19 @@
 <?php
 namespace routecms;
 
+use routecms\actions\AjaxError;
+use routecms\pages\Error;
 use routecms\system\db\Database;
 use routecms\system\event\EventManger;
 use routecms\system\event\template\TemplateEventManger;
 use routecms\system\languages\Languages;
 use routecms\system\menu\Menu;
-use routecms\system\user\User;
 use routecms\system\user\group\GroupOption;
 use routecms\system\user\session\Session;
-use routecms\actions\AjaxError;
-use routecms\pages\Error;
+use routecms\system\user\User;
 
 spl_autoload_register(array('routecms\Routecms',
 	'autoload'));
-
 
 
 /*--------------------------------------------------------------------------------------------------
@@ -312,6 +311,7 @@ class Routecms {
 	public static function getPermission($permission) {
 		return GroupOption::getOptionValue($permission);
 	}
+
 	/**
 	 * Gibt den Inhalt einer Sprachvariabel zurück
 	 *

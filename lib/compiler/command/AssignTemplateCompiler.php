@@ -1,5 +1,6 @@
 <?php
 namespace routecms\compiler\command;
+
 use routecms\compiler\ArgCompiler;
 use routecms\compiler\QuoteCompiler;
 
@@ -29,7 +30,7 @@ class AssignTemplateCompiler extends TemplateCompiler {
 				$compiler = new ArgCompiler($matches[2][$i]);
 				$value = $compiler->compileArgs();
 				$result .= $value.'] =';
-			}elseif($name == "value"){
+			}elseif($name == "value") {
 				$compiler = new ArgCompiler($matches[2][$i]);
 				$value = $compiler->compileArgs();
 				$result .= $value;

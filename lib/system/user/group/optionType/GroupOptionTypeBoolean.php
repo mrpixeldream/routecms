@@ -14,9 +14,9 @@ class GroupOptionTypeBoolean extends AbstractGroupOptionType {
 	/**
 	 * @see AbstractGroupOptionType::getValue()
 	 */
-	public function getValue(){
-		foreach($this->getGroupValues() as $groupID => $value){
-			if($value == "1" || $value == 1){
+	public function getValue() {
+		foreach($this->getGroupValues() as $groupID => $value) {
+			if($value == "1" || $value == 1) {
 				return true;
 			}
 		}

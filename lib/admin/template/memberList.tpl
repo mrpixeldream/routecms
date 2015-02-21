@@ -21,8 +21,8 @@
         {foreach from=$objects item='user'}
             <tr data-row-id="{#$user->userID}">
                 <td>
-                    <a href="index.php?page=user&amp;userID={#$user->userID}">{#$user->userID}</a>
-                    {if $__Routecms->checkPermission("admin.can.delete.user") && $__Routecms->__call(array('routecms\system\user\User', 'canMangedUser'), array($user))}
+                    <a href="index.php?page=userEdit&amp;userID={#$user->userID}">{#$user->userID}</a>
+                    {if $user->userID != $__Routecms->getUser()->userID && $__Routecms->checkPermission("admin.can.delete.user") && $__Routecms->__call(array('routecms\system\user\User', 'canMangedUser'), array($user))}
                         <i class="ajaxMessage alert fi-x" aria-haspopup="true" data-tooltip
                            data-reveal-id="userDeleteID{#$user->userID}" title="{lang "user.delete"}"></i>
                         <div class="reveal-modal ajax" data-action="delete" id="userDeleteID{#$user->userID}"
@@ -39,7 +39,7 @@
                         <i class="disabled alert fi-x"></i>
                     {/if}
                     {if $__Routecms->checkPermission("admin.can.edit.user")}
-                        <a href="index.php?page=user&amp;userID={#$user->userID}"><i aria-haspopup="true" data-tooltip
+                        <a href="index.php?page=userEdit&amp;userID={#$user->userID}"><i aria-haspopup="true" data-tooltip
                                                                                      class="fi-pencil"
                                                                                      title="{lang "user.edit"}"></i></a>
                     {else}

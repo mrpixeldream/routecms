@@ -1,7 +1,8 @@
 <?php
 namespace routecms\system;
-use routecms\system\event\EventManger;
+
 use routecms\Routecms;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : DBObject.php
@@ -134,6 +135,7 @@ abstract class DBObject {
 			return null;
 		}
 	}
+
 	/**
 	 * Überpürft ob eine Variable existiert
 	 *

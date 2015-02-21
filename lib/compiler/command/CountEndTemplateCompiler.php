@@ -9,4 +9,5 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 20.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class CountEndTemplateCompiler extends IfEndTemplateCompiler {}
+class CountEndTemplateCompiler extends IfEndTemplateCompiler {
+}
