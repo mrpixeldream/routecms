@@ -112,7 +112,11 @@ footer a p:hover {
     }
 
 }
-
+@media only screen and (max-width: 50em) {
+    .small-no-right {
+        float: none !important;
+    }
+}
 @media only screen and (min-width: 40.063em) {
     .topBox {
         margin-top: 100px;
@@ -123,6 +127,10 @@ footer a p:hover {
         font-size: 19px;
     }
 
+}
+
+ul.pagination {
+    display: inline-block;
 }
 
 /*

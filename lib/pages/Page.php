@@ -34,6 +34,12 @@ abstract class Page {
 	 * @var    string
 	 */
 	public $title = "";
+	/**
+	 * Eine Liste mit zusätzlichen Inhalt
+	 *
+	 * @var    array
+	 */
+	public $additional = array();
 
 	/**
 	 * Erstellt eine neue Template Klassen Seite
@@ -98,6 +104,12 @@ abstract class Page {
 	 **/
 	public function save() {
 		EventManger::event("save", get_class($this), $this);
+	}
+	/**
+	 * Action die nach dem Speichern ausgeführt werden können
+	 **/
+	public function saved() {
+		EventManger::event("saved", get_class($this), $this);
 	}
 
 	/**

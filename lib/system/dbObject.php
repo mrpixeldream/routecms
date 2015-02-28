@@ -112,7 +112,7 @@ abstract class DBObject {
 	/**
 	 * Gibt das Letzte Element zurück
 	 *
-	 * @return object
+	 * @return array
 	 */
 	public static function getLast() {
 		$sql = "SELECT * FROM	".static::getDBName()." ORDER BY ".static::$dbIndex." DESC";

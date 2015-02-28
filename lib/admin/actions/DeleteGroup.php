@@ -35,6 +35,9 @@ class DeleteGroup extends Ajax {
 		if(!in_array($this->groupID, Routecms::getPermission("admin.can.mange.group"))) {
 			throw new PermissionExceptionAjax();
 		}
+		if(in_array($this->groupID, array(1,2))){
+			throw new PermissionExceptionAjax();
+		}
 	}
 
 	/**

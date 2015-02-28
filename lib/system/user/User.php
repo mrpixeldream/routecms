@@ -1,9 +1,11 @@
 <?php
 namespace routecms\system\user;
 
+use routecms\exception\SystemException;
 use routecms\Input;
 use routecms\Routecms;
 use routecms\system\DBObject;
+use routecms\util\String;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : User.php
@@ -71,7 +73,7 @@ class User extends dbObject {
 	 *
 	 * @return string
 	 */
-	public static function generateSalat($length = 20) {
+	public static function generateSalt($length = 20) {
 		$availableCharacters = array('abcdefghijklmnopqrstuvwxyz',
 			'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			'0123456789');
@@ -157,8 +159,8 @@ class User extends dbObject {
 	public static function getUserAgent() {
 		if(isset($_SERVER['HTTP_USER_AGENT'])) {
 			$userAgent = $_SERVER['HTTP_USER_AGENT'];
-			if(!preg_match('/^[\x00-\x7F]*$/', $userAgent) && !stringUtil::isUTF8($userAgent)) {
-				$userAgent = stringUtil::convertEncoding('ISO-8859-1', 'UTF-8', $userAgent);
+			if(!preg_match('/^[\x00-\x7F]*$/', $userAgent) && !String::isUTF8($userAgent)) {
+				$userAgent = String::convert('ISO-8859-1', 'UTF-8', $userAgent);
 			}
 
 			return mb_substr($userAgent, 0, 255);
@@ -177,7 +179,7 @@ class User extends dbObject {
 	public static function canMangedUser($user) {
 		$result = true;
 		if(!$user && !isset($user->userID) || $user->userID == 0) {
-			throw new SystemException(lang("exception.input.user.false"));
+			throw new SystemException(Routecms::getLanguage()->get("exception.input.user.false"));
 		}
 		foreach($user->getGroupIDs() as $groupID) {
 			if(!in_array($groupID, Routecms::getPermission("admin.can.mange.group"))) {
@@ -216,8 +218,8 @@ class User extends dbObject {
 			}
 		}
 		//ändert die Kodierung
-		if(!preg_match('/^[\x00-\x7F]*$/', $url) && !stringUtil::isUTF8($url)) {
-			$url = stringUtil::covert('ISO-8859-1', 'UTF-8', $url);
+		if(!preg_match('/^[\x00-\x7F]*$/', $url) && !String::isUTF8($url)) {
+			$url = String::convert('ISO-8859-1', 'UTF-8', $url);
 		}
 
 		return mb_substr($url, 0, 255);
@@ -286,5 +288,33 @@ class User extends dbObject {
 	 */
 	public function isAdmin() {
 		return Routecms::getPermission("admin.can.use.admin");
+	}
+	/**
+	 * Fügt den Aktuellen Benutzer zu einer Liste von Gruppen hinzu
+	 *
+	 * @param    array $groupIDs
+	 * @param    boolean $addDefault
+	 * @param    boolean $deleteOld
+	 */
+	public function addToGroups(array $groupIDs,$addDefault = true, $deleteOld = false){
+		if($deleteOld){
+			$sql = "DELETE FROM ".DB_PREFIX."user_to_group
+			WHERE	userID = ?";
+			$statement = Routecms::getDB()->statement($sql);
+			$statement->execute(array($this->userID));
+		}
+		$sql = "INSERT INTO ".DB_PREFIX."user_to_group(userID, groupID) VALUES";
+		$parameter = array();
+		if($addDefault) {
+			$groupIDs = array_merge(array(2), $groupIDs);
+		}
+		foreach($groupIDs as $groupID){
+			$sql .= "(?, ?),";
+			$parameter[] = $this->userID;
+			$parameter[] = $groupID;
+		}
+		$sql = mb_substr($sql, 0, -1);
+		$statement = Routecms::getDB()->statement($sql);
+		$statement->execute($parameter);
 	}
 }

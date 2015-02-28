@@ -22,7 +22,7 @@
             <tr data-row-id="{#$group->groupID}">
                 <td>
                     <a href="index.php?page=groupEdit&amp;groupID={#$group->groupID}">{#$group->groupID}</a>
-                    {if $__Routecms->checkPermission("admin.can.delete.group") && $__Routecms->in_array($group->groupID ,$__Routecms->getPermission("admin.can.mange.group"))}
+                    {if ($__Routecms->checkPermission("admin.can.delete.group") && $__Routecms->in_array($group->groupID ,$__Routecms->getPermission("admin.can.mange.group"))) && !$__Routecms->in_array($group->groupID ,array(1,2))}
                         <i class="ajaxMessage alert fi-x" aria-haspopup="true" data-tooltip
                            data-reveal-id="groupDeleteID{#$group->groupID}" title="{lang "system.global.delete"}"></i>
                         <div class="reveal-modal ajax" data-action="delete" id="groupDeleteID{#$group->groupID}"

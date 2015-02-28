@@ -2,12 +2,13 @@
 {include file="menu"}
 
 
-<form class="column" action="?page=userEdit&amp;userID={#$userID}" method="post">
+<form class="column" action="?page={if $action == "add"}userAdd{else}userEdit&amp;userID={#$userID}{/if}" method="post">
     <div class="content-box">
+        {isset var=$success}<span class="alert-box success">{lang "system.global.success.".$action}</span>{/isset}
         <ul class="panel tabs" data-tab role="tablist">
             <li role="presentational"
                 class="tab-title small active"><a
-                        href="index.php?page=userEdit&userID={#$userID}#categoryGeneral">{lang "user.profil.category.general"}</a>
+                        href="index.php?page={if $action == "add"}userAdd{else}userEdit&amp;userID={#$userID}{/if}#categoryGeneral">{lang "user.profil.category.general"}</a>
             </li>
         </ul>
         <div class="tabs-content">
@@ -28,6 +29,24 @@
                                 </small>
                             {/error}
                         </div>
+                        <div class="large-12 small-12 medium-12 columns">
+                            <label>{lang "user.category.admin.groups"}</label>
+                            {foreach from=$groups item="group"}
+                                <div class="large-12 small-12 medium-12 columns">
+                                    <input type="checkbox"
+                                           id="group{$group->groupID}"{error var="groupIDs"} class="error"{/error} {if $__Routecms->in_array($group->groupID, $groupIDs)} checked="checked"{/if}
+                                           name="groupIDs[{$group->groupID}]" value="1"/>
+                                    <label for="group{$group->groupID}">{lang $group->name}</label>
+                                    {error var="groupIDs"}
+                                        <small class="error">
+                                            {if $errorType == "empty"}
+                                                {lang "system.form.empty"}
+                                            {/if}
+                                        </small>
+                                    {/error}
+                                </div>
+                            {/foreach}
+                        </div>
                     </div>
                 </fieldset>
                 <fieldset>
@@ -35,7 +54,7 @@
                     <div class="row">
                         <div class="large-12 small-12 medium-12 columns">
                             <label>{lang "user.password"}
-                                <input type="text"{error var="password"} class="error"{/error} name="password" id="password" value="{$password}">
+                                <input type="password"{error var="password"} class="error"{/error} name="password" id="password" value="">
                             </label>
                             {error var="password"}
                                 <small class="error">
@@ -50,7 +69,7 @@
                     <div class="row">
                         <div class="large-12 small-12 medium-12 columns">
                             <label>{lang "user.password.again"}
-                                <input type="text"{error var="passwordAgain"} class="error"{/error} name="passwordAgain" id="passwordAgain" value="{$passwordAgain}">
+                                <input type="password"{error var="passwordAgain"} class="error"{/error} name="passwordAgain" id="passwordAgain" value="">
                             </label>
                             {error var="passwordAgain"}
                                 <small class="error">

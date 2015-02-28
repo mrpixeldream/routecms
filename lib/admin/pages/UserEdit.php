@@ -17,12 +17,12 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 21.02.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class UserEdit extends Page {
+class UserEdit extends UserAdd {
 
 	/**
 	 * @see    Page::$template
 	 */
-	public $template = "userEdit";
+	public $template = "userAdd";
 	/**
 	 * @see    Page::$title
 	 */
@@ -92,20 +92,14 @@ class UserEdit extends Page {
 		$this->username = $this->user->username;
 		$this->mail = $this->user->email;
 		$this->mailAgain = $this->user->email;
-	}
-
-	/**
-	 * @see    Page::save()
-	 */
-	public function save() {
-		parent::save();
+		$this->groupIDs = $this->user->getGroupIDs();
 	}
 
 	/**
 	 * @see    Page::validate()
 	 */
 	public function validate() {
-		parent::validate();
+		Page::validate();
 		if($this->username != $this->user->username) {
 			if(User::usernameAvailable($this->username)) {
 				throw new InputException('username', 'use');
@@ -125,28 +119,12 @@ class UserEdit extends Page {
 	}
 
 	/**
-	 * @see    Page::postRead()
-	 */
-	public function postRead() {
-		parent::postRead();
-		$this->username = Input::post('username', 'string', '');
-		$this->password = Input::post('password', 'string', '');
-		$this->passwordAgain = Input::post('passwordAgain', 'string', '');
-		$this->mail = Input::post('mail', 'string', '');
-		$this->mailAgain = Input::post('mailAgain', 'string', '');
-	}
-
-	/**
 	 * @see Page::assign()
 	 **/
 	public function assign() {
 		parent::assign();
 		Routecms::getTemplate()->assign(array('user' => $this->user,
-			'username' => $this->username,
-			'password' => $this->password,
-			'passwordAgain' => $this->passwordAgain,
-			'mail' => $this->mail,
-			'mailAgain' => $this->mailAgain,
+			'action' => 'edit',
 			'userID' => $this->userID));
 	}
 }
