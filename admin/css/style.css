@@ -11,13 +11,15 @@ body {
 }
 
 fieldset {
-    border:none !important;
+    border: none !important;
 }
-fieldset >legend{
+
+fieldset > legend {
     border-bottom: 1px solid #e1dede;
-    color:#303030 !important;
+    color: #303030 !important;
     width: 100%;
 }
+
 .content-box {
     margin: 15px;
     background-color: #f5f4f4;
@@ -25,8 +27,8 @@ fieldset >legend{
     width: calc(100% - 50px);
 }
 
-.content-box *{
-    color:#aaa9a9;
+.content-box * {
+    color: #aaa9a9;
 }
 
 @media only screen and (max-width: 40.062em) {
@@ -36,11 +38,11 @@ fieldset >legend{
     }
 }
 
-.no-border-top{
+.no-border-top {
     border-top: none !important;
 }
 
-.container{
+.container {
     background-color: #ffffff;
 }
 
@@ -110,7 +112,11 @@ footer a p:hover {
     }
 
 }
-
+@media only screen and (max-width: 50em) {
+    .small-no-right {
+        float: none !important;
+    }
+}
 @media only screen and (min-width: 40.063em) {
     .topBox {
         margin-top: 100px;
@@ -121,6 +127,10 @@ footer a p:hover {
         font-size: 19px;
     }
 
+}
+
+ul.pagination {
+    display: inline-block;
 }
 
 /*
@@ -430,11 +440,6 @@ Ajax
     cursor: pointer;
 }
 
-label {
-    display: inline-block;
-    width: 5em;
-}
-
 .reveal-modal, .reveal-modal * {
     color: #000000;
 }
@@ -454,26 +459,30 @@ Tabs
     font-size: 0.7rem;
     border-radius: 30px !important;
 }
+
 .tabs dd.active > a, .tabs .tab-title.active > a {
     background-color: #488bc5;
-    color:#ffffff;
+    color: #ffffff;
 }
+
 .tabs dd > a, .tabs .tab-title > a {
     background-color: #e1dede;
-    color:#404040;
+    color: #404040;
 }
 
 .tabs:not(.small) dd.active > a, .tabs:not(.small) .tab-title.active > a {
     font-size: 1rem;
 }
+
 .tabs:not(.small) dd > a, .tabs:not(.small) .tab-title > a {
 
 }
+
 .tabs.panel {
     padding: 0;
 }
 
-.small.tabs{
+.small.tabs {
     padding: 5px;
 }
 

@@ -1,6 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
+namespace routecms\compiler\command;
+
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : IssetTemplateCompiler.php
@@ -17,9 +19,9 @@ class IssetTemplateCompiler extends TemplateCompiler {
 	 */
 	public function compileTag() {
 		$result = '<?php if(';
-		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array('routecms\compiler\QuoteCompiler',
 			'replaceSingleQuotesCallback'), $this->args);
-		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array('routecms\compiler\QuoteCompiler',
 			'replaceDoubleQuotesCallback'), $this->args);
 		preg_match_all('~\s+(\w+)\s*=\s*([^=]*)(?=\s|$)~s', $this->args, $matches);
 		for($i = 0, $j = count($matches[1]); $i < $j; $i++) {

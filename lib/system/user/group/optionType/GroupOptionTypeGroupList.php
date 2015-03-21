@@ -1,5 +1,5 @@
 <?php
-require_once(DIRNAME.'lib/system/user/group/optionType/AbstractGroupOptionType.php');
+namespace routecms\system\user\group\optionType;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : GroupOptionTypeGroupList.php

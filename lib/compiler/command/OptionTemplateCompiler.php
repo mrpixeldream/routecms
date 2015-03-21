@@ -1,6 +1,11 @@
 <?php
-require_once(DIRNAME.'lib/system/option/Option.php');
-require_once(DIRNAME.'lib/compiler/ArgCompiler.php');
+namespace routecms\compiler\command;
+
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
+use routecms\exception\SystemException;
+use routecms\Routecms;
+use routecms\system\option\Option;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : OptionTemplateCompiler.php
@@ -15,9 +20,9 @@ class OptionTemplateCompiler extends TemplateCompiler {
 	 * @see TemplateCompiler::compileTag()
 	 */
 	public function compileTag() {
-		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array('routecms\compiler\QuoteCompiler',
 			'replaceSingleQuotesCallback'), $this->args);
-		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array('routecms\compiler\QuoteCompiler',
 			'replaceDoubleQuotesCallback'), $this->args);
 		preg_match_all('~\s+(\w+)\s*=\s*([^=]*)(?=\s|$)~s', $this->args, $matches);
 		$args = array();
@@ -29,7 +34,7 @@ class OptionTemplateCompiler extends TemplateCompiler {
 			$args[$name] = $value;
 		}
 		if(!isset($args["option"])) {
-			throw new Exception("Fehler beim Kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', keine Option Variabel angegeben");
+			throw new SystemException("Fehler beim Kompilieren des Templates '".Routecms::getTemplate()->getTemplateName()."', keine Option Variabel angegeben");
 		}
 		$name = substr($args["option"], 1, -1);
 		return '<?php echo "'.Option::getOptionValue($name).'" ?>';

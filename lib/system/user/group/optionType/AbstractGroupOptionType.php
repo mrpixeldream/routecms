@@ -1,5 +1,9 @@
 <?php
-require_once(DIRNAME.'lib/system/user/group/GroupOption.php');
+namespace routecms\system\user\group\optionType;
+
+use routecms\exception\SystemException;
+use routecms\Routecms;
+use routecms\system\user\group\GroupOption;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AbstractGroupOptionType.php
@@ -52,22 +56,25 @@ abstract class AbstractGroupOptionType {
 	 *
 	 * @return mixed
 	 */
-	public function getValue() {}
+	public function getValue() {
+	}
+
 	/**
 	 * Gibt in einer Array alle Inhalter der Option zurück
 	 *
 	 * @return array<mixed>
 	 */
-	protected function getGroupValues(){
+	protected function getGroupValues() {
 		$values = array();
 		foreach($this->groupIDs as $groupID) {
 			$sql = "SELECT	value
 			FROM	".DB_PREFIX."group_option_value
 			WHERE	optionID = ? AND groupID = ?";
 			$statement = Routecms::getDB()->statement($sql, 1);
-			$statement->execute(array($this->option->optionID, $groupID));
+			$statement->execute(array($this->option->optionID,
+				$groupID));
 			$row = $statement->fetchArray();
-			if($row && isset($row["value"])){
+			if($row && isset($row["value"])) {
 				$values[$groupID] = $row["value"];
 			}
 		}

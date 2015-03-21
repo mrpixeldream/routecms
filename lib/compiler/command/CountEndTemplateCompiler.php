@@ -1,5 +1,5 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
+namespace routecms\compiler\command;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : CountEndTemplateCompiler.php
@@ -9,11 +9,5 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 20.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class CountEndTemplateCompiler extends TemplateCompiler {
-	/**
-	 * @see TemplateCompiler::compileTag()
-	 */
-	public function compileTag() {
-		return '<?php } ?>';
-	}
+class CountEndTemplateCompiler extends IfEndTemplateCompiler {
 }

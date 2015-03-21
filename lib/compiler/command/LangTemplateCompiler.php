@@ -1,5 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
+namespace routecms\compiler\command;
+
+use routecms\compiler\ArgCompiler;
+use routecms\compiler\QuoteCompiler;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : LangTemplateCompiler.php
@@ -15,13 +18,13 @@ class LangTemplateCompiler extends TemplateCompiler {
 	 * @see TemplateCompiler::compileTag()
 	 */
 	public function compileTag() {
-		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~\'([^\'\\\\]+|\\\\.)*\'~', array('routecms\compiler\QuoteCompiler',
 			'replaceSingleQuotesCallback'), $this->args);
-		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array("QuoteCompiler",
+		$this->args = preg_replace_callback('~"([^"\\\\]+|\\\\.)*"~', array('routecms\compiler\QuoteCompiler',
 			'replaceDoubleQuotesCallback'), $this->args);
 		$compiler = new ArgCompiler($this->args);
 		$this->args = $compiler->compileArgs();
 		$this->args = QuoteCompiler::insertQuotes($this->args);
-		return '<?php echo lang('.$this->args.') ?>';
+		return '<?php echo routecms\Routecms::lang('.$this->args.') ?>';
 	}
 }

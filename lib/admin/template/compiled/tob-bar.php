@@ -1,6 +1,6 @@
 <?php
 /**
- * Hash : c4b964604285adcc55215bf861d9bab5747dbd3f
+ * Hash : 0f12be031a4ba8a31e6bf918bc61818f4b477e44
  */
 ?>
 <nav class="top-bar" data-topbar role="navigation">
@@ -14,7 +14,8 @@
                     <span class="avatar switch round" style="background-image: url('../avatar/test.jpg');"></span>
                 </div>
                 <div class="large-8 medium-8 small-7 columns loginInfo">
-                    <?php echo lang("user.welcome.back") ?> <a href="index.php?page=User&amp;userID=<?php echo intval($this->vars['user']->userID) ?>"><?php echo HTMLEncode($this->vars['user']->username) ?></a>
+                    <?php echo routecms\Routecms::lang("user.welcome.back") ?> <a
+                            href="index.php?page=userEdit&amp;userID=<?php echo intval($this->vars['user']->userID) ?>"><?php echo routecms\util\String::HTMLEncode($this->vars['user']->username) ?></a>
                 </div>
             </div>
         </li>

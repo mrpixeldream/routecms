@@ -1,5 +1,5 @@
 <?php
-
+namespace routecms\system\event\events;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AbstractEvent.php
 Beschreibung 	 : Abstrakte Klasse für die Events

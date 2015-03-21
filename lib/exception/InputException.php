@@ -1,4 +1,7 @@
 <?php
+namespace routecms\exception;
+
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : InputException.php
@@ -8,7 +11,7 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 04.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class InputException extends Exception {
+class InputException extends \Exception {
 	/**
 	 * Gibt die Fehlermeldung aus
 	 *

@@ -1,5 +1,7 @@
 <?php
-require_once('EventObject.php');
+namespace routecms\system\event;
+
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : EventManger.php
@@ -70,13 +72,11 @@ class EventManger {
 			foreach($list as $id) {
 				if(isset(self::$events[$id])) {
 					$eventObject = self::$events[$id];
-					if(file_exists($eventObject->getPath())) {
-						require_once($eventObject->getPath());
-						if(class_exists($eventObject->class.'Event')) {
-							$eventClass = $eventObject->class.'Event';
-							new $eventClass($event, $class, $object);
-						}
+					$class = $eventObject->getClass();
+					if(class_exists($class)) {
+						new $class($event, $class, $object);
 					}
+
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 <?php
+namespace routecms\exception;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AjaxException.php
@@ -8,19 +9,17 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 25.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class AjaxException extends Exception {
+class AjaxException extends \Exception {
 	/**
 	 * Ruft eine Fehlerseite auf, die anzeigt das der Benutzer nicht die nötigen Rechte hat
 	 */
 	public function __construct($errorCode, $title, $description) {
 		ob_clean();
 		$header = '';
-		$response = array(
-			'code' => $errorCode,
+		$response = array('code' => $errorCode,
 			'title' => $title,
-			'description' => $description
-		);
-		switch ($errorCode) {
+			'description' => $description);
+		switch($errorCode) {
 			case 400:
 				$header = 'HTTP/1.0 400 Bad Request';
 				break;

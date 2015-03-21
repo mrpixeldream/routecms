@@ -1,5 +1,11 @@
 <?php
-require_once(DIRNAME.'lib/actions/class/Ajax.php');
+namespace routecms\admin\actions;
+
+use routecms\actions\Ajax;
+use routecms\exception\PermissionExceptionAjax;
+use routecms\Input;
+use routecms\Routecms;
+use routecms\system\user\User;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : DeleteUser.php
@@ -30,13 +36,17 @@ class DeleteUser extends Ajax {
 		if(!User::canMangedUserByUserID($this->userID)) {
 			throw new PermissionExceptionAjax();
 		}
+		if($this->userID == Routecms::getUser()->userID){
+			throw new PermissionExceptionAjax();
+		}
 	}
 
 	/**
 	 * @see Ajax::getData()
 	 **/
 	public function getData() {
-		return array('action' => 'success', 'userID' => $this->userID);
+		return array('action' => 'success',
+			'userID' => $this->userID);
 	}
 
 	/**

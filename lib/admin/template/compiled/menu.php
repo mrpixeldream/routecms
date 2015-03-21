@@ -18,14 +18,14 @@
                 <?php foreach($this->vars['menuTree'] as $this->vars['item']){?>
                     <li<?php if($this->vars['pageName'] == $this->vars['item']->page) { ?> class="active"<?php } ?>>
                         <a class="menuItem"
-                           href="index.php?page=<?php echo $this->vars['item']->page ?>"><?php echo lang("system.page.admin.menu.".$this->vars['item']->name) ?></a>
+                           href="index.php?page=<?php echo $this->vars['item']->page ?>"><?php echo routecms\Routecms::lang("system.page.admin.menu.".$this->vars['item']->name) ?></a>
                         <?php if(count($this->vars['item']->getParent()) > 0){ ?>
                             <a class="dropdownIcon fi-arrow-down"></a>
                             <ul class="side-nav-parent" style="display: none;">
                                 <?php foreach($this->vars['item']->getParent() as $this->vars['parent']){?>
                                     <li<?php if($this->vars['pageName'] == $this->vars['parent']->page) { ?> class="active"<?php } ?>>
                                         <a class="parentMenuItem"
-                                           href="index.php?page=<?php echo $this->vars['parent']->page ?>"><?php echo lang("system.page.admin.menu.".$this->vars['parent']->name) ?></a>
+                                           href="index.php?page=<?php echo $this->vars['parent']->page ?>"><?php echo routecms\Routecms::lang("system.page.admin.menu.".$this->vars['parent']->name) ?></a>
                                     </li>
                                 <?php } ?>
                             </ul>

@@ -6,6 +6,9 @@
         </h2>
     </header>
     {pages print=true link="index.php?page=MemberList" sortField=$sortField sortOrder=$sortOrder}
+    <div class="right small-no-right">
+        <a href="index.php?page=UserAdd" class="button small">{lang "system.global.add"}</a>
+    </div>
     <table class="responsive userTable" role="grid" style="width: 100%">
         <thead>
         <tr>
@@ -21,8 +24,8 @@
         {foreach from=$objects item='user'}
             <tr data-row-id="{#$user->userID}">
                 <td>
-                    <a href="index.php?page=user&amp;userID={#$user->userID}">{#$user->userID}</a>
-                    {if $__Routecms->checkPermission("admin.can.delete.user") && $__Routecms->__call(array('User', 'canMangedUser'), array($user))}
+                    <a href="index.php?page=userEdit&amp;userID={#$user->userID}">{#$user->userID}</a>
+                    {if $user->userID != $__Routecms->getUser()->userID && $__Routecms->checkPermission("admin.can.delete.user") && $__Routecms->__call(array('routecms\system\user\User', 'canMangedUser'), array($user))}
                         <i class="ajaxMessage alert fi-x" aria-haspopup="true" data-tooltip
                            data-reveal-id="userDeleteID{#$user->userID}" title="{lang "user.delete"}"></i>
                         <div class="reveal-modal ajax" data-action="delete" id="userDeleteID{#$user->userID}"
@@ -30,18 +33,19 @@
                             <p>{lang "user.delete.sure"}</p>
                             <button class="request" data-action="delete"
                                     data-link="index.php?page=DeleteUser&amp;userID={#$user->userID}"
-                                    data-delete-row-id="{#$user->userID}">Ja
+                                    data-delete-row-id="{#$user->userID}">{lang "system.global.yes"}
                             </button>
-                            <button class="close">Nein</button>
+                            <button class="close">{lang "system.global.no"}</button>
                             <a class="close-reveal-modal">&#215;</a>
                         </div>
                     {else}
                         <i class="disabled alert fi-x"></i>
                     {/if}
                     {if $__Routecms->checkPermission("admin.can.edit.user")}
-                        <a href="index.php?page=user&amp;userID={#$user->userID}"><i aria-haspopup="true" data-tooltip
-                                                                                     class="fi-pencil"
-                                                                                     title="{lang "user.edit"}"></i></a>
+                        <a href="index.php?page=userEdit&amp;userID={#$user->userID}"><i aria-haspopup="true"
+                                                                                         data-tooltip
+                                                                                         class="fi-pencil"
+                                                                                         title="{lang "user.edit"}"></i></a>
                     {else}
                         <i class="fi-pencil disabled"></i>
                     {/if}
@@ -52,5 +56,8 @@
         </tbody>
     </table>
     {@$pageLinks}
+    <div class="right small-no-right">
+        <a href="index.php?page=UserAdd" class="button small">{lang "system.global.add"}</a>
+    </div>
 </div>
 {include file="footer"}

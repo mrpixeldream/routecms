@@ -1,4 +1,10 @@
 <?php
+namespace routecms\pages;
+
+use routecms\exception\PermissionException;
+use routecms\Input;
+use routecms\Routecms;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Page.php
@@ -28,6 +34,12 @@ abstract class Page {
 	 * @var    string
 	 */
 	public $title = "";
+	/**
+	 * Eine Liste mit zusätzlichen Inhalt
+	 *
+	 * @var    array
+	 */
+	public $additional = array();
 
 	/**
 	 * Erstellt eine neue Template Klassen Seite
@@ -39,12 +51,15 @@ abstract class Page {
 	 * Starte die Seiten Klassen Funktionen
 	 **/
 	public function __run() {
-		if(count($this->permissions) > 0){
-			if(!Routecms::checkPermissions($this->permissions)){
+		if(count($this->permissions) > 0) {
+			if(!Routecms::checkPermissions($this->permissions)) {
 				throw new PermissionException();
 			}
 		}
 		$this->read();
+		if(Input::isPost()) {
+			$this->submit();
+		}
 		$this->show();
 	}
 
@@ -53,9 +68,7 @@ abstract class Page {
 	 **/
 	public function read() {
 		EventManger::event("read", get_class($this), $this);
-		if(Input::isPost()) {
-			$this->submit();
-		}
+
 	}
 
 	/**
@@ -67,7 +80,7 @@ abstract class Page {
 		try {
 			$this->validate();
 			$this->save();
-		}catch(Exception $ex) {
+		}catch(\Exception $ex) {
 
 		}
 	}
@@ -91,6 +104,12 @@ abstract class Page {
 	 **/
 	public function save() {
 		EventManger::event("save", get_class($this), $this);
+	}
+	/**
+	 * Action die nach dem Speichern ausgeführt werden können
+	 **/
+	public function saved() {
+		EventManger::event("saved", get_class($this), $this);
 	}
 
 	/**

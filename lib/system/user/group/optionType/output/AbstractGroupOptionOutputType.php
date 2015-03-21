@@ -1,6 +1,10 @@
 <?php
-require_once(DIRNAME.'lib/system/user/group/GroupOption.php');
-require_once(DIRNAME.'lib/system/user/group/Group.php');
+namespace routecms\system\user\group\optionType\output;
+
+use routecms\Input;
+use routecms\Routecms;
+use routecms\system\user\group\Group;
+use routecms\system\user\group\GroupOption;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AbstractGroupOptionOutputType.php
@@ -11,6 +15,7 @@ Letzte Änderung  : 08.02.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
 abstract class AbstractGroupOptionOutputType {
+
 	/**
 	 * Die Aktulle Gruppen Option bei der Aktionen ausgeführt werden sollen
 	 *
@@ -23,43 +28,91 @@ abstract class AbstractGroupOptionOutputType {
 	 * @var GroupOption
 	 */
 	protected $group = null;
+	/**
+	 * Von der Aktuellen Gruppe der Inhalt der Option
+	 *
+	 * @var mixed
+	 */
+	protected $value = null;
+	/**
+	 * Der Original Inhalt der Option
+	 *
+	 * @var mixed
+	 */
+	protected $originalValue = null;
 
 	/**
 	 * Erstellt eine neue Options Type Klasse
 	 *
 	 * @param GroupOption $option
+	 * @param Group       $group
+	 * @param boolean     $post
 	 */
-	public function __construct(GroupOption $option, Group $group) {
+	public function __construct(GroupOption $option, Group $group, $post = false) {
 		$this->option = $option;
 		$this->group = $group;
+		$this->originalValue = $this->option->getValue($this->group->groupID);
+		if($post) {
+			$this->loadValue();
+		}else {
+			$this->value = $this->originalValue;
+		}
 	}
+
 	/**
-	 * Übergibt dem Template Options Variablen
+	 * Ruft den Wert der Option ab
 	 */
-	public function assign(){
-		Routecms::getTemplate()->assign(array('option_'.$this->option->optionID => $this->option));
+	protected function loadValue() {
+		$this->value = Input::post("groupOptionValues[".$this->option->name."]", "");
 	}
+
+	/**
+	 * Gibt den aktuellen Inhalt der Option zurück
+	 */
+	public function getValue() {
+		return $this->value;
+	}
+
 	/**
 	 * Prüft ob die eingabe der Option korekt sind
-	 *
-	 * @param mixed $newValue
 	 */
-	public function validate($newValue){}
+	public function validate() {
+	}
 
 	/**
 	 * Gibt die zuspeichernde Options Inhalt zurück
 	 *
-	 * @param mixed $newValue
-	 *
 	 * @return mixed
 	 */
-	public function getSaveValue($newValue){
-		return $newValue;
+	public function save() {
+		if($this->originalValue != $this->value) {
+			$sql = "DELETE FROM	".DB_PREFIX."group_option_value
+			WHERE		groupID = ? AND optionID = ?";
+			$statement = Routecms::getDB()->statement($sql);
+			$statement->execute(array($this->group->groupID,
+				$this->option->optionID));
+			$sql = "INSERT INTO ".DB_PREFIX."group_option_value (optionID, groupID, value) VALUES (?, ?, ?)";
+			$statement = Routecms::getDB()->statement($sql);
+			$statement->execute(array($this->option->optionID,
+				$this->group->groupID,
+				$this->value));
+		}
 	}
+
 	/**
 	 * Gibt den Template Namen zurück für diese Option
 	 *
 	 * @return string
 	 */
-	public function getTemplate(){}
+	public function getTemplate() {
+	}
+
+	/**
+	 * Gibt das Template aus für diese Option
+	 *
+	 * @return string
+	 */
+	public function fetchTemplate() {
+		return Routecms::getTemplate()->fetchTemplate($this->getTemplate(), "lib/admin/template/", true);
+	}
 }

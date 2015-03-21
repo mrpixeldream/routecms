@@ -1,5 +1,8 @@
 <?php
-require_once(DIRNAME."lib/Routecms.php");
+namespace routecms\system;
+
+use routecms\Routecms;
+use routecms\system\event\EventManger;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : DBObject.php
@@ -71,18 +74,17 @@ abstract class DBObject {
 	 *
 	 * @param string $name
 	 * @param string $value
-	 * @param string $path
-	 * @param string $class
+	 * @param string $namespace
 	 *
 	 * @return object
 	 */
-	public static function getBy($name, $value, $path, $class) {
+	public static function getBy($name, $value, $namespace) {
 		$sql = "SELECT	*
 				FROM	".static::getDBName()."
 				WHERE	".$name." = ?";
 		$statement = Routecms::getDB()->statement($sql, 1);
 		$statement->execute(array($value));
-		return $statement->fetchObject($path, $class);
+		return $statement->fetchObject($namespace);
 	}
 
 	/**
@@ -110,7 +112,7 @@ abstract class DBObject {
 	/**
 	 * Gibt das Letzte Element zurück
 	 *
-	 * @return object
+	 * @return array
 	 */
 	public static function getLast() {
 		$sql = "SELECT * FROM	".static::getDBName()." ORDER BY ".static::$dbIndex." DESC";
@@ -133,6 +135,7 @@ abstract class DBObject {
 			return null;
 		}
 	}
+
 	/**
 	 * Überpürft ob eine Variable existiert
 	 *

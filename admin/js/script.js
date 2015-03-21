@@ -17,7 +17,13 @@ function stickyFooter() {
     }
 }
 
+function removeHeight() {
+    $('div[role="navigation"]').css({'min-height': ""});
+    $('div[role="mainContent"]').css({'min-height': ""});
+}
+
 function updateSidebar() {
+    removeHeight();
     var $height = document.documentElement.clientHeight,
         $main = jQuery('div[role="main"]').height();
     if ($main > $height) {

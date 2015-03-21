@@ -3,14 +3,14 @@ body {
     background-size: 100% 100%;
 }
 
-footer > div{
+footer > div {
     margin: auto;
 }
-
 
 footer a p {
     color: #e1e0e0 !important;
 }
-footer a p:hover{
+
+footer a p:hover {
     color: #ffffff !important;
 }

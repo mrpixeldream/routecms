@@ -2,7 +2,7 @@
 {include file="menu"}
 
 
-<form class="column">
+<form class="column" action="?page=groupEdit&groupID={#$groupID}" method="post">
     <div class="content-box">
         <ul class="panel tabs" data-tab role="tablist">
             {assign var="first" value=true}
@@ -33,21 +33,29 @@
                             {foreach from=$category->getParent() item=parent}
                                 <div class="column panel container content no-border-top{if $first} active{assign var="first" value=false}{/if}"
                                      aria-hidden="true" id="category{@$parent->categoryID}">
-                                    <fieldset>
-                                        <legend>{lang "user.category.".$parent->name}</legend>
-                                        {foreach from=$parent->getOptionList() item="option"}
-                                            {assign var="templateName" value=$optionList[$option->optionID]["output"]->getTemplate()}
-                                            {include file=$templateName}
-                                        {/foreach}
-                                    </fieldset>
-                                    {foreach from=$parent->getParent() item=optionCategory}
+                                    {count var=$parent->getOptionList() min=0}
                                         <fieldset>
-                                            <legend>{lang "user.category.".$optionCategory->name}</legend>
-                                            {foreach from=$optionCategory->getOptionList() item="option"}
-                                                {assign var="templateName" value=$optionList[$option->optionID]["output"]->getTemplate()}
-                                                {include file=$templateName}
-                                            {/foreach}
+                                            <legend>{lang "user.category.".$parent->name}</legend>
+                                            <div class="row">
+                                                {foreach from=$parent->getOptionList() item="option"}
+                                                    {assign var="value" value=$optionList[$option->optionID]["output"]->getValue()}
+                                                    {@$optionList[$option->optionID]["output"]->fetchTemplate()}
+                                                {/foreach}
+                                            </div>
                                         </fieldset>
+                                    {/count}
+                                    {foreach from=$parent->getParent() item=optionCategory}
+                                        {count var=$optionCategory->getOptionList() min=0}
+                                            <fieldset>
+                                                <legend>{lang "user.category.".$optionCategory->name}</legend>
+                                                <div class="row">
+                                                    {foreach from=$optionCategory->getOptionList() item="option"}
+                                                        {assign var="value" value=$optionList[$option->optionID]["output"]->getValue()}
+                                                        {@$optionList[$option->optionID]["output"]->fetchTemplate()}
+                                                    {/foreach}
+                                                </div>
+                                            </fieldset>
+                                        {/count}
                                     {/foreach}
                                 </div>
                             {/foreach}

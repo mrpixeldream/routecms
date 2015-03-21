@@ -1,5 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/Page.php');
+namespace routecms\admin\pages;
+
+use routecms\pages\Page;
+
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Login.php
 Beschreibung 	 : Admin Login Seite des Routecms

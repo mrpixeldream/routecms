@@ -1,6 +1,13 @@
 {
   "user.none": "Keine Benutzer vorhanden",
   "user.username": "Benutzername",
+  "user.user": "Benutzer",
+  "user.password": "Passwort",
+  "user.password.again": "Passwort wiederhollen",
+  "user.password.change": "Passwort ändern",
+  "user.mail": "E-Mail Adresse",
+  "user.mail.again": "E-Mail Adresse wiederhollen",
+  "user.mail.change": "E-Mail Adresse ändern",
   "user.real.name": "Name",
   "user.login.password.error.false": "Passwort stimmt mit dem Benutzername nicht &uuml;berein",
   "user.login.error.not.registered": "Der Benutzername existiert nicht",
@@ -12,5 +19,13 @@
   "user.category.user.general": "Allgemein",
   "user.category.admin": "Administrative Rechte",
   "user.category.admin.general": "Allgemein",
-  "user.category.admin.user": "Benutzer"
+  "user.category.admin.user": "Benutzer",
+  "user.category.admin.members": "Mitglieder",
+  "user.category.admin.groups": "Benutzergruppen",
+  "user.grou.option.admin.can.delete.user": "Kann Mitglieder löschen",
+  "user.grou.option.admin.can.edit.user": "Kann Mitglieder bearbeiten",
+  "user.grou.option.admin.can.use.admin": "Kann das Admin-Panel betreten",
+  "user.category.admin.groupsMange": "Zugängliche Benutzergruppen",
+  "user.profil.category.general": "Allgemein",
+  "user.profil.error.mail.false" : "Die angegebene E-Mail Adresse ist nicht gültig"
 }

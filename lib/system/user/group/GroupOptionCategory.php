@@ -1,6 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/system/dbObject.php');
-require_once(DIRNAME.'lib/system/user/group/GroupOption.php');
+namespace routecms\system\user\group;
+
+use routecms\Routecms;
+use routecms\system\DBObject;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : GroupOptionCategory.php
@@ -72,15 +74,16 @@ class GroupOptionCategory extends dbObject {
 		}
 		return $this->parent;
 	}
+
 	/**
 	 * Gibt eine Liste mit den Optionen dieser Kategorie zurück
 	 *
 	 * @return array<GroupOption>
 	 */
-	public function getOptionList(){
+	public function getOptionList() {
 		if(is_null($this->options)) {
 			$this->options = array();
-			$sql = "SELECT	id
+			$sql = "SELECT	*
 			FROM	".DB_PREFIX."group_option
 			WHERE	category = ? ORDER BY position ASC";
 			$statement = Routecms::getDB()->statement($sql);

@@ -1,6 +1,10 @@
 <?php
-require_once(DIRNAME.'lib/system/dbObject.php');
-require_once(DIRNAME.'lib/system/user/session/Session.php');
+namespace routecms\system\menu;
+
+use routecms\Routecms;
+use routecms\system\DBObject;
+use routecms\system\event\EventManger;
+use routecms\system\user\session\Session;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Menu.php

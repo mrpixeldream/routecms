@@ -1,6 +1,10 @@
 <?php
-require_once(DIRNAME.'lib/system/dbObject.php');
-require_once(DIRNAME.'lib/system/user/session/Session.php');
+namespace routecms\system\menu;
+
+use routecms\Routecms;
+use routecms\system\DBObject;
+use routecms\system\event\EventManger;
+use routecms\system\user\session\Session;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AdminMenu.php
@@ -43,11 +47,11 @@ class AdminMenu extends dbObject {
 		$statement->execute();
 		while($row = $statement->fetchArray()) {
 			$menu = new AdminMenu(null, $row);
-			if(!empty($menu->permissions)){
-				if(Routecms::checkPermission($menu->permissions)){
+			if(!empty($menu->permissions)) {
+				if(Routecms::checkPermission($menu->permissions)) {
 					$result[] = $menu;
 				}
-			}else{
+			}else {
 				$result[] = $menu;
 
 			}

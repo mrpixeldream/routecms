@@ -1,5 +1,5 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/Page.php');
+namespace routecms\pages;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Login.php

@@ -1,5 +1,7 @@
 <?php
-require_once(DIRNAME.'lib/compiler/Output.php');
+namespace routecms\compiler;
+
+use routecms\exception\SystemException;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Handler.php
@@ -8,6 +10,7 @@ Copyright  		 : Routecms © 2015
 Author 		     : Olaf Braun
 Letzte Änderung  : 01.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
+
 
 class Handler {
 
@@ -99,7 +102,7 @@ class Handler {
 	/**
 	 * Beginnt mit der Kompilierung des Template Codes
 	 *
-	 * @throws Exception
+	 * @throws SystemException
 	 * @return string
 	 */
 	public function startCompiler() {
@@ -124,7 +127,7 @@ class Handler {
 				$output = new $class($args);
 				return $output->compileTag();
 			}else {
-				throw new Exception("Undefinierter Template Befehl = '".$command."'");
+				throw new SystemException("Undefinierter Template Befehl = '".$command."'");
 			}
 		}
 		return "";
@@ -140,6 +143,7 @@ class Handler {
 	 */
 
 	protected function buildClassString($command, $end = false) {
+		$command = 'routecms\compiler\command\\'.$command;
 		if($end) {
 			return $command."EndTemplateCompiler";
 		}

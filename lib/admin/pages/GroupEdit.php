@@ -1,17 +1,25 @@
 <?php
-require_once(DIRNAME.'lib/pages/class/Page.php');
-require_once(DIRNAME.'lib/system/user/group/Group.php');
-require_once(DIRNAME.'lib/system/user/group/GroupOptionCategory.php');
+namespace routecms\admin\pages;
+
+use routecms\exception\IllegalLinkException;
+use routecms\exception\PermissionException;
+use routecms\Input;
+use routecms\pages\Page;
+use routecms\Routecms;
+use routecms\system\user\group\Group;
+use routecms\system\user\group\GroupOption;
+use routecms\system\user\group\GroupOptionCategory;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Index.php
-Beschreibung 	 : Startseite des Routecms
+Beschreibung 	 : Seite um einen Benutzergruppe zubearbeiten
 Copyright  		 : Routecms © 2015
 Author 		     : Olaf Braun
-Letzte Änderung  : 11.01.2015 Olaf Braun
+Letzte Änderung  : 21.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
 class GroupEdit extends Page {
+
 	/**
 	 * @see    Page::$template
 	 */
@@ -64,8 +72,30 @@ class GroupEdit extends Page {
 			while($row = $statement->fetchArray()) {
 				$option = new GroupOption(null, $row);
 				$this->optionList[$option->optionID]["option"] = $option;
-				$this->optionList[$option->optionID]["output"] = $option->getOutput($this->group);
-							}
+				$this->optionList[$option->optionID]["output"] = $option->getOutput($this->group, Input::isPost());
+			}
+		}
+	}
+
+	/**
+	 * @see    Page::save()
+	 */
+	public function save() {
+		parent::save();
+		foreach($this->optionList as $option) {
+			$output = $option["output"];
+			$output->save();
+		}
+	}
+
+	/**
+	 * @see    Page::validate()
+	 */
+	public function validate() {
+		parent::validate();
+		foreach($this->optionList as $option) {
+			$output = $option["output"];
+			$output->validate();
 		}
 	}
 

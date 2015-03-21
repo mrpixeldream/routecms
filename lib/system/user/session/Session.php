@@ -1,7 +1,10 @@
 <?php
-require_once(DIRNAME."lib/system/dbObject.php");
-require_once(DIRNAME."lib/system/user/User.php");
-require_once(DIRNAME."lib/system/option/Option.php");
+namespace routecms\system\user\session;
+
+use routecms\system\DBObject;
+use routecms\system\event\EventManger;
+use routecms\system\option\Option;
+use routecms\system\user\User;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : Session.php
@@ -70,7 +73,7 @@ class Session extends dbObject {
 	public static function createSession($username, $password) {
 		$sessionID = self::generatSessionID();
 		$data = array();
-		$user = User::getBy("username", $username, DIRNAME."lib/system/user/User.php", "User");
+		$user = User::getBy("username", $username, 'routecms\system\user\User');
 		$password = User::cryptPW($password, $sessionID);
 		$data['userID'] = $user->userID;
 		$data['sessionID'] = $sessionID;
@@ -92,14 +95,14 @@ class Session extends dbObject {
 		$availableCharacters = array('abcdefghijklmnopqrstuvwxyz',
 			'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 			'0123456789');
-		$salat = '';
+		$salt = '';
 		$type = 0;
 		for($i = 0; $i < 50; $i++) {
 			$type = ($i % 3 == 0) ? 0 : ($type + 1);
-			$salat .= substr($availableCharacters[$type], mt_rand(0, strlen($availableCharacters[$type]) - 1), 1);
+			$salt .= substr($availableCharacters[$type], mt_rand(0, strlen($availableCharacters[$type]) - 1), 1);
 		}
 
-		return str_shuffle($salat);
+		return str_shuffle($salt);
 	}
 
 	/**

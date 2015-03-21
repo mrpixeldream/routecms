@@ -1,6 +1,8 @@
 <?php
-require_once(DIRNAME.'lib/actions/class/Ajax.php');
-require_once(DIRNAME.'lib/exception/AjaxException.php');
+namespace routecms\admin\actions;
+
+use routecms\actions\Ajax;
+use routecms\Routecms;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : AjaxIllegalLink.php
@@ -15,7 +17,8 @@ class AjaxIllegalLink extends Ajax {
 	 * @see Ajax::getData()
 	 **/
 	public function getData() {
-		return array('title' => lang('exception.illegal.link'), 'description' => lang('exception.illegal.link.description'));
+		return array('title' => Routecms::getLanguage()->get('exception.illegal.link'),
+			'description' => Routecms::getLanguage()->get('exception.illegal.link.description'));
 	}
 
 	/**

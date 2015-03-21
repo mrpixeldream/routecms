@@ -1,5 +1,5 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
+namespace routecms\compiler\command;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : IssetEndTemplateCompiler.php
@@ -9,11 +9,4 @@ Author 		     : Olaf Braun
 Letzte Änderung  : 01.01.2015 Olaf Braun
 -------------------------------------------------------------------------------------------------*/
 
-class IssetEndTemplateCompiler extends TemplateCompiler {
-	/**
-	 * @see TemplateCompiler::compileTag()
-	 */
-	public function compileTag() {
-		return '<?php } ?>';
-	}
-}
+class IssetEndTemplateCompiler extends IfEndTemplateCompiler {}

@@ -1,5 +1,5 @@
 <?php
-require_once(DIRNAME.'lib/compiler/command/TemplateCompiler.php');
+namespace routecms\compiler\command;
 
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : ElseTemplateCompiler.php

@@ -1,5 +1,5 @@
 <?php
-
+namespace routecms\compiler\command;
 /*--------------------------------------------------------------------------------------------------
 Datei      		 : TemplateCompiler.php
 Beschreibung 	 : Abstrakte Template Kompilirungs Klasse
